@@ -386,6 +386,7 @@ for in the Aws cloud we need to security groups as below.
 
 
 
+![img](apache.png)
 
 
 
