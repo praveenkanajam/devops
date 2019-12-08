@@ -11,10 +11,12 @@ IN Linux every thing is command.
 Linux is case sensitive.
 
 --> To get the architure of OS: 
+
 $ uname -i
 x86_64
 Note: 32-bit -i386/i586/i686 than it is 32-bit
 ---> to get the os details:
+
 $ uname
 Linux
 ---> to get the os vendor
