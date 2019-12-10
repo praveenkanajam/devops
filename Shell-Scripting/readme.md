@@ -1,16 +1,19 @@
+
+#           ***** SHEBANG *****
 ```
-           ***** SHEBANG *****
 #!/bin/bash
 1) First and formost line - SHEBANG
 Shell - Interpreter.
 ```
+
+#        ***** COMMENTS ******
 ```
-        ***** COMMENTS ******
 # ANY LINE STARTS WITH # IS CALLED COMMENT AND IF IT IS 1ST LINE THEN IT WILL BE SHEBANG
 
 ```
+
+#       ****** PRINTING ******
 ```
-       ****** PRINTING ******
 Command-Name {options} {I/P}
 echo {options}
 
