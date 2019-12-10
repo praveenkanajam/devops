@@ -14,15 +14,19 @@ echo {options}
 
 
         FG      BG
-Red     31
-Green   32
-Yellow  33
-Blue    34
-Magneta 35
-cyan    36
+Black   30      40        
+Red     31      41
+Green   32      42
+Yellow  33      43    
+Blue    34      44
+Magneta 35      45
+cyan    36      46
+White   37      47
+echo -e "\e[color-codemI/P"
 -n
 HAI
 BYE
+
 Note: When ever you are using -e option in echo command , always provide the input in double  Quotes.
 
 I/P: echo -e " Hi \nBYE"
