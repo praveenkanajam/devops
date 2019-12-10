@@ -80,6 +80,43 @@ EOT
 
 NOte: for sending multiple users we need to use a file. like a template hear Input Redirector, works.
 
+# vim BodyMessage
+[root@desktop ~]# cat BodyMessage
+Hellow,
+
+How are you Doing
+
+see you.
+
+Thanks,
+KPK
+[root@desktop ~]# mail -s "TestMail" root@localhost <BodyMessage
+[root@desktop ~]# mail
+Heirloom Mail version 12.5 7/5/10.  Type ? for help.
+"/var/spool/mail/root": 6 messages 2 new
+    1 user@localhost.local  Wed Aug 14 08:35 1012/76676 "[abrt] open-vm-tools: vmtoolsd killed by SIGTRAP"
+    2 root                  Sun Dec  8 16:34  20/650   "Laptop"
+    3 root                  Sun Dec  8 16:38  19/660   "Payment"
+    4 root                  Sun Dec  8 16:39  19/625   "Payment Remainder"
+>N  5 root                  Sun Dec  8 16:43  18/606   "Test Mail"
+ N  6 root                  Sun Dec  8 17:15  25/652   "TestMail"
+
+ ---- Message to Users ----
+
+# wall Machine will be rebooted after 10 minutes
+[root@desktop ~]#
+Broadcast message from root@desktop.example.com (pts/1) (Sun Dec  8 17:21:10 2019):
+
+Machine will be rebooted after 10 minutes
+/* Note: in the above wall message shows to all the users */
+
+[root@desktop ~]# tty
+/dev/pts/1
+[root@desktop ~]# echo -e "\e[31mMachine will be rebooted after 10 minutes\e[0m">/dev/pts/1
+Machine will be rebooted after 10 minutes
+/* Note: Hear this message will be redirected to terminal 1 */
+[root@desktop ~]# echo -e "\e[31mMachine will be rebooted aafter 10 minutes\e[0m">/dev/pts/2
+/* Note: Hear this message will be redirected to terminal 2 */
 
 ````
 
