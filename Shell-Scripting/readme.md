@@ -70,7 +70,7 @@ Hi Hellow[root@desktop ~]#
 
 ```
 
-# ****** ReDirectors ************
+#     *** ReDirectors ***
 ```
 Standard Input (Start):
 # mail --help
