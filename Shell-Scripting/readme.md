@@ -68,8 +68,20 @@ Hi Hellow[root@desktop ~]#
 ````
 ReDirectors:
 
+# mail --help
+mail: illegal option -- -
+Usage: mail -eiIUdEFntBDNHRVv~ -T FILE -u USER -h hops -r address -s SUBJECT -a FILE -q FILE -f FILE -A ACCOUNT -b USERS -c USERS -S OPTION users
+
+# mail -s "Test Mail" root@localhost
+GM
+.
+EOT
+
+NOte: for sending multiple users we need to use a file. like a template hear Input Redirector, works.
+
 
 ````
+
 
 
 
