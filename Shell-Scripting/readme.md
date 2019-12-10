@@ -2,8 +2,6 @@
 #!/bin/bash
 1) First and formost line - SHEBANG
 
-echo I/P
-O/P
 Command-Name {options} {I/P}
 echo {options}
 
@@ -14,9 +12,9 @@ echo {options}
 
 
         
--n
-HAI
-BYE
+echo I/P : echo -e "HI \n BYE"
+O/P:    HAI
+        BYE
 
 Note: When ever you are using -e option in echo command , always provide the input in double  Quotes.
 
@@ -41,4 +39,30 @@ Magneta 35      45
 cyan    36      46
 White   37      47
 echo -e "\e[color-codemI/P"
+
+Red colour:
+# echo -e "\e[31mHellow world"
+Hellow world
+
+Green: 
+# echo -e "\e[32mHellow world"
+Hellow world
+
+To disable the  colours:
+# echo -e "\e[0mHellow world"                                                                 
+Hellow world
+````
+````
+echo -n option: To disable the new line.
+
+# echo -n "Hi Hellow"
+Hi Hellow[root@desktop ~]#
+
+````
+
+````
+ReDirectors:
+````
+
+
 
