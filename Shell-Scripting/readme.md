@@ -68,10 +68,10 @@ echo -n option: To disable the new line.
 Hi Hellow[root@desktop ~]#
 
 
-````
-````
-****** ReDirectors ************
+```
 
+# ****** ReDirectors ************
+```
 Standard Input (Start):
 # mail --help
 mail: illegal option -- -
@@ -185,6 +185,6 @@ searchfile
 
 
 
-````
+```
 ssh-pass
 https://www.cyberciti.biz/faq/noninteractive-shell-script-ssh-password-provider/
