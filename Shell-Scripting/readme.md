@@ -169,6 +169,14 @@ ls: cannot access testfile: No such file or directory
 [root@desktop ~]# cat err
 ls: cannot access testfile: No such file or directory
 
+Note: 1> or > is same.
+
+Case 5: hear output and error copied to same file.
+# ls searchfile testfile >out 2>&1
+[root@desktop ~]# cat out
+ls: cannot access testfile: No such file or directory
+searchfile
+
 ```
 
 
