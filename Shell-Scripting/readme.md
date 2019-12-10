@@ -67,8 +67,9 @@ Hi Hellow[root@desktop ~]#
 
 ````
 ````
-ReDirectors:
+****** ReDirectors ************
 
+Standard Input (Start):
 # mail --help
 mail: illegal option -- -
 Usage: mail -eiIUdEFntBDNHRVv~ -T FILE -u USER -h hops -r address -s SUBJECT -a FILE -q FILE -f FILE -A ACCOUNT -b USERS -c USERS -S OPTION users
@@ -134,6 +135,39 @@ Ex 2:
 # ls searchfile
 searchfile
 NOte: hear rm command will not accept the input.
+
+Standard Input (End)..
+
+---------- Standard OUtput --------------
+Case 1: 
+It will redirect the output.
+# date > out
+[root@desktop ~]# cat out
+Sun Dec  8 17:40:30 IST 2019
+
+Case 2: hear lss is not a command,error not redirected.
+# lss >out
+bash: lss: command not found...
+Similar command is: 'ls'
+[root@desktop ~]# cat out
+[root@desktop ~]#
+
+Case 3: To redirect erros to a file.
+# lss 2>err
+[root@desktop ~]# cat err
+bash: lss: command not found...
+Similar command is: 'ls'
+
+Case 4: Hear we had done that out re-directed to out file and error redirected to err file
+
+# ls -l searchfile testfile
+ls: cannot access testfile: No such file or directory
+-rw-r--r-- 1 root root 14 Dec  8 17:31 searchfile
+[root@desktop ~]# ls -l searchfile testfile 1>out 2>err
+[root@desktop ~]# cat out
+-rw-r--r-- 1 root root 14 Dec  8 17:31 searchfile
+[root@desktop ~]# cat err
+ls: cannot access testfile: No such file or directory
 ````
 
 
