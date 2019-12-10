@@ -118,6 +118,22 @@ Machine will be rebooted after 10 minutes
 [root@desktop ~]# echo -e "\e[31mMachine will be rebooted aafter 10 minutes\e[0m">/dev/pts/2
 /* Note: Hear this message will be redirected to terminal 2 */
 
+Note: all the commands wont accepts standard inputs.
+
+Ex 1: 
+NOte: Grep commnad works for the standard input
+# grep root /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+operator:x:11:0:operator:/root:/sbin/nologin
+[root@desktop ~]# grep root</etc/passwd
+root:x:0:0:root:/root:/bin/bash
+operator:x:11:0:operator:/root:/sbin/nologin
+
+Ex 2:
+# rm -f <searchfile
+# ls searchfile
+searchfile
+NOte: hear rm command will not accept the input.
 ````
 
 
