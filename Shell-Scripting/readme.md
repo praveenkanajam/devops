@@ -1,6 +1,6 @@
 ```
 #!/bin/bash
-1) First and formost line
+1) First and formost line - SHEBANG
 
 echo I/P
 O/P
@@ -13,16 +13,7 @@ echo {options}
     \e  - New Color
 
 
-        FG      BG
-Black   30      40        
-Red     31      41
-Green   32      42
-Yellow  33      43    
-Blue    34      44
-Magneta 35      45
-cyan    36      46
-White   37      47
-echo -e "\e[color-codemI/P"
+        
 -n
 HAI
 BYE
@@ -40,4 +31,14 @@ hi      bye
 To get the colour informetion man page is
 # man console_codes
 
+FG      BG
+Black   30      40        
+Red     31      41
+Green   32      42
+Yellow  33      43    
+Blue    34      44
+Magneta 35      45
+cyan    36      46
+White   37      47
+echo -e "\e[color-codemI/P"
 
