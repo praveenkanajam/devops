@@ -158,7 +158,7 @@ Case 3: To redirect erros to a file.
 bash: lss: command not found...
 Similar command is: 'ls'
 
-Case 4: Hear we had done that out re-directed to out file and error redirected to err file
+Case 4: Hear we had done that output --> re-directed to out file and error --> redirected to err file
 
 # ls -l searchfile testfile
 ls: cannot access testfile: No such file or directory
@@ -168,7 +168,8 @@ ls: cannot access testfile: No such file or directory
 -rw-r--r-- 1 root root 14 Dec  8 17:31 searchfile
 [root@desktop ~]# cat err
 ls: cannot access testfile: No such file or directory
-````
+
+```
 
 
 
