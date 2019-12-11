@@ -497,6 +497,23 @@ operator:x:11:0:operator:/root:/sbin/nologin
 root:$6$2qXWJx6j$P2Mm.8XSI.Fb8r9HJEqbvIf5MPdW9xZqY1VbLDeWfVYps4dMEw79pse/botqzBOw7Da8evGsz0JWim5eQu1Fa.:18144:0:99999:7:::
 
 
+To grep the files with some text 
+# cat -n text
+     1  abc
+     2  ABC
+     3  abcE
+     4  XadcX
+     5  ABCAAAA
+[root@desktop Desktop]# cat -n text | grep abc
+     1  abc
+     3  abcE
+[root@desktop Desktop]# cat -n text | grep -i abc
+     1  abc
+     2  ABC
+     3  abcE
+     5  ABCAAAA
+
+
 
 
 
