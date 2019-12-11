@@ -555,6 +555,14 @@ To grep the file and list lines after the lines also. using "-A n"
     11  games:x:12:100:games:/usr/games:/sbin/nologin
     12  ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin
 
+To get the before lines . -B n
+
+# cat -n passwd | grep root -B 1
+     1  root:x:0:0:root:/root:/bin/bash
+--
+     9  mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
+    10  operator:x:11:0:operator:/root:/sbin/nologin
+
 
 
 
