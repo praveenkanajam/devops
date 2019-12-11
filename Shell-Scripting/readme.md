@@ -372,7 +372,7 @@ Filters:
     2) Row Based    :
     3) Coloum Based : 
 
-Head: 
+1)Head: 
 By default it will display 10 lines
 
 # cat -n passwd | head
