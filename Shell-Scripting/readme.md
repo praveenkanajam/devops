@@ -475,6 +475,29 @@ To search a word from file input in different files.
 /etc/shadow:root:$6$2qXWJx6j$P2Mm.8XSI.Fb8r9HJEqbvIf5MPdW9xZqY1VbLDeWfVYps4dMEw79pse/botqzBOw7Da8evGsz0JWim5eQu1Fa.:18144:0:99999:7:::
 /etc/shadow:sshd:!!:18122::::::
 
+To search a word and list the words which are matched with out output.
+# grep -f search.grep /etc/passwd /etc/shadow -l 
+/etc/passwd
+/etc/shadow
+
+To search a word and list the words which are matched with out output.
+# grep -f search.grep /etc/passwd /etc/shadow /etc/hosts -L
+/etc/hosts
+
+
+To search a word and list the words which are matched with count.
+# grep -f search.grep /etc/passwd /etc/shadow -c
+/etc/passwd:3
+/etc/shadow:2
+
+To grep the file get the output with out file name.
+# grep root /etc/passwd /etc/shadow /etc/hosts -h
+root:x:0:0:root:/root:/bin/bash
+operator:x:11:0:operator:/root:/sbin/nologin
+root:$6$2qXWJx6j$P2Mm.8XSI.Fb8r9HJEqbvIf5MPdW9xZqY1VbLDeWfVYps4dMEw79pse/botqzBOw7Da8evGsz0JWim5eQu1Fa.:18144:0:99999:7:::
+
+
+
 
 
 
