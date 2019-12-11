@@ -357,13 +357,73 @@ a-z,0-9,_ (Normal characters)
         a                           b
         [root@desktop Desktop]# echo "a                           b"
         a                           b
-
-
-
-
         3) Double quotes
         It is alos covered in the above. Please refer.
 ```
+# ****** Text Filters ***********
 
+```
+Why ?
+hear everthing is a file.
+To deal with file, need to sort of data,based on requirement.
+
+Filters:
+    1) Line Numbers : head, tail
+    2) Row Based    :
+    3) Coloum Based : 
+
+Head: 
+By default it will display 10 lines
+
+# cat -n passwd | head
+     1  root:x:0:0:root:/root:/bin/bash
+     2  bin:x:1:1:bin:/bin:/sbin/nologin
+     3  daemon:x:2:2:daemon:/sbin:/sbin/nologin
+     4  adm:x:3:4:adm:/var/adm:/sbin/nologin
+     5  lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+     6  sync:x:5:0:sync:/sbin:/bin/sync
+     7  shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+     8  halt:x:7:0:halt:/sbin:/sbin/halt
+     9  mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
+    10  operator:x:11:0:operator:/root:/sbin/nologin
+
+To display top 3 lines # head -n3 <file name> or as below.
+# cat -n passwd | head -n3
+     1  root:x:0:0:root:/root:/bin/bash
+     2  bin:x:1:1:bin:/bin:/sbin/nologin
+     3  daemon:x:2:2:daemon:/sbin:/sbin/nologin
+
+
+2) Tail: 
+# cat -n passwd | tail
+    41  ntp:x:38:38::/etc/ntp:/sbin/nologin
+    42  tcpdump:x:72:72::/:/sbin/nologin
+    43  student:x:1000:1000:student:/home/student:/bin/bash
+    44  vboxadd:x:988:1::/var/run/vboxadd:/bin/false
+    45  tom:x:1001:1001::/home/tom:/bin/bash
+    46  nscd:x:28:28:NSCD Daemon:/:/sbin/nologin
+    47  nslcd:x:65:55:LDAP Client User:/:/sbin/nologin
+    48  tom1:x:1002:1002::/home/tom1:/bin/bash
+    49  tom2:x:1003:1002::/home/tom2:/bin/bash
+    50  apache:x:48:48:Apache:/usr/share/httpd:/sbin/nologin
+
+To display last 3 lines
+# cat -n passwd | tail -n3
+    48  tom1:x:1002:1002::/home/tom1:/bin/bash
+    49  tom2:x:1003:1002::/home/tom2:/bin/bash
+    50  apache:x:48:48:Apache:/usr/share/httpd:/sbin/nologin
+
+
+Lines between 10 to 15:
+
+# cat -n passwd |head -n15|tail -n6
+    10  operator:x:11:0:operator:/root:/sbin/nologin
+    11  games:x:12:100:games:/usr/games:/sbin/nologin
+    12  ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin
+    13  nobody:x:99:99:Nobody:/:/sbin/nologin
+    14  systemd-network:x:192:192:systemd Network Management:/:/sbin/nologin
+    15  dbus:x:81:81:System message bus:/:/sbin/nologin
+
+```
 ssh-pass
 https://www.cyberciti.biz/faq/noninteractive-shell-script-ssh-password-provider/
