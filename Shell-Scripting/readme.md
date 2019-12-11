@@ -227,9 +227,10 @@ Sun Dec  8 19:10:07 IST 2019
 Sun Dec  8 19:08:18 IST 2019
 Sun Dec  8 19:10:07 IST 2019
 ```
-```
+
 #           ****    PIPES   ****
 ![Pipes](Pipes.PNG)
+
 ```
 
  command1 > out ---> Hear it will save the output which utilizes Storage
@@ -241,7 +242,7 @@ Pipes - Symbol - |
 
 
 
-````
+```
 
 
 ```
