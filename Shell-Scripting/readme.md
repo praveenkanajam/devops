@@ -369,7 +369,7 @@ To deal with file, need to sort of data,based on requirement.
 
 Filters:
     1) Line Numbers : head, tail
-    2) Row Based    :
+    2) Row Based    : grep
     3) Coloum Based : 
 
 1)Head: 
@@ -423,6 +423,61 @@ Lines between 10 to 15:
     13  nobody:x:99:99:Nobody:/:/sbin/nologin
     14  systemd-network:x:192:192:systemd Network Management:/:/sbin/nologin
     15  dbus:x:81:81:System message bus:/:/sbin/nologin
+----------------------------------------------------------------------
+3) Grep: to search words from a file. 
+
+To search a word root from the file passwd
+# grep root passwd
+root:x:0:0:root:/root:/bin/bash
+operator:x:11:0:operator:/root:/sbin/nologin
+
+To invert the search : list the line words which is not "root" in passwd file.
+# grep -v root passwd
+
+To search with the word root and ssh
+# grep -e root -e ssh passwd
+root:x:0:0:root:/root:/bin/bash
+operator:x:11:0:operator:/root:/sbin/nologin
+sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
+
+To search words from a file input.
+# grep -f search.grep passwd
+root:x:0:0:root:/root:/bin/bash
+operator:x:11:0:operator:/root:/sbin/nologin
+sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
+
+# cat search.grep
+root
+ssh
+
+To search words from a file and show the no of lines which is matched.
+# grep -f search.grep passwd -c
+3
+
+To search a root word from multiple files.
+
+# grep root /etc/passwd /etc/passwd- /etc/group /etc/group- /etc/shadow /etc/shadow-
+/etc/passwd:root:x:0:0:root:/root:/bin/bash
+/etc/passwd:operator:x:11:0:operator:/root:/sbin/nologin
+/etc/passwd-:root:x:0:0:root:/root:/bin/bash
+/etc/passwd-:operator:x:11:0:operator:/root:/sbin/nologin
+/etc/group:root:x:0:
+/etc/group-:root:x:0:
+/etc/shadow:root:$6$2qXWJx6j$P2Mm.8XSI.Fb8r9HJEqbvIf5MPdW9xZqY1VbLDeWfVYps4dMEw79pse/botqzBOw7Da8evGsz0JWim5eQu1Fa.:18144:0:99999:7:::
+/etc/shadow-:root:$6$2qXWJx6j$P2Mm.8XSI.Fb8r9HJEqbvIf5MPdW9xZqY1VbLDeWfVYps4dMEw79pse/botqzBOw7Da8evGsz0JWim5eQu1Fa.:18144:0:99999:7:::
+
+To search a word from file input in different files.
+
+# grep -f search.grep /etc/passwd /etc/shadow
+/etc/passwd:root:x:0:0:root:/root:/bin/bash
+/etc/passwd:operator:x:11:0:operator:/root:/sbin/nologin
+/etc/passwd:sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
+/etc/shadow:root:$6$2qXWJx6j$P2Mm.8XSI.Fb8r9HJEqbvIf5MPdW9xZqY1VbLDeWfVYps4dMEw79pse/botqzBOw7Da8evGsz0JWim5eQu1Fa.:18144:0:99999:7:::
+/etc/shadow:sshd:!!:18122::::::
+
+
+
+
 
 ```
 ssh-pass
