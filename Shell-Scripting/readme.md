@@ -310,7 +310,7 @@ a-z,0-9,_ (Normal characters)
 ~!@#$%^&*() (Special Character) space
         1) Backslash (\) -- to disable to special characers, But it is difficult to apply for every character.
         2) Single Quotes ('') -- It will completely disable the special charactes.
-        3) Double Quotes (" ")-- It will treat only Dollar ($) and Command Quote(``) as special character. 
+        3) Double Quotes (" ")-- It will treat only Dollar ($) and Command Quotes(``) as special character. 
         ---------------------------------------------------------------
         1) BackSlach(\) --- it will escape the special character.
 
