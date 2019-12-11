@@ -311,6 +311,7 @@ a-z,0-9,_ (Normal characters)
         1) Backslash (\) -- to disable to special characers, But it is difficult to apply for every character.
         2) Single Quotes ('') -- It will completely disable the special charactes.
         3) Double Quotes (" ")-- It will treat only Dollar ($) and Command Quotes(``) as special character. 
+        Again if you want to disable the special character we need to use \$  \`.
         ---------------------------------------------------------------
         1) BackSlach(\) --- it will escape the special character.
 
