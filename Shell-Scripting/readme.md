@@ -106,6 +106,7 @@ Sun Dec  8 19:10:07 IST 2019
 ```
 
 #     *** ReDirectors ***
+![redirector](Redirector.PNG)
 ```
 Standard Input (Start):
 # mail --help
@@ -210,14 +211,34 @@ ls: cannot access testfile: No such file or directory
 Note: 1> or > is same.
 
 ** Case 5: ** hear output and error copied to same file.
-# ls searchfile testfile >out 2>&1
+# ls searchfile testfile >out 2>&1 or ls -ltr searchfile testdoc &>out
 [root@desktop ~]# cat out
 ls: cannot access testfile: No such file or directory
 searchfile
 
+case 6: Hear output redirected and appended to file.
+# ./script1.sh | tee out
+Sun Dec  8 19:08:18 IST 2019
+[root@desktop ~]# cat out
+Sun Dec  8 19:08:18 IST 2019
+[root@desktop ~]# ./script1.sh | tee -a out
+Sun Dec  8 19:10:07 IST 2019
+[root@desktop ~]# cat out
+Sun Dec  8 19:08:18 IST 2019
+Sun Dec  8 19:10:07 IST 2019
 ```
+````
+#           ****    PIPES   ****
+ command1 > out ---> Hear it will save the output which utilizes Storage
+ command  < out ---> Hear it will utilize the input form file which also utilzes the storage
+
+When comming to pipes, i will utilize the ram and very faster than disk.
+
+Pipes |
 
 
+
+````
 
 
 ```
