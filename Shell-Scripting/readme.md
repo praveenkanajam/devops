@@ -244,7 +244,7 @@ Pipes - Symbol - |
 root:x:0:0:root:/root:/bin/bash
 operator:x:11:0:operator:/root:/sbin/nologin
 ```
-#           Exit Status
+#           ***** Exit Status *****
 ![kill](Exit_status.PNG)
 ```
 
@@ -252,6 +252,8 @@ operator:x:11:0:operator:/root:/sbin/nologin
 [root@desktop ~]# echo $?
 0
 [root@desktop ~]# lss &>/dev/null
+
+Note: Hear /dev/null --> it will nullify the output.
 [root@desktop ~]# echo $?
 127
 [root@desktop ~]# sleep 400
