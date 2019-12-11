@@ -66,6 +66,41 @@ echo -n option: To disable the new line.
 
 # echo -n "Hi Hellow"
 Hi Hellow[root@desktop ~]#
+                
+                OR
+
+# ls -ltr searchfile testfile &>out
+[root@desktop ~]# cat out
+ls: cannot access testfile: No such file or directory
+-rw-r--r-- 1 root root 14 Dec  8 17:31 searchfile
+
+Case 6: to append the output and error to same file.
+# ls -ltr searchfile testfile &>>out
+[root@desktop ~]# cat out
+ls: cannot access testfile: No such file or directory
+-rw-r--r-- 1 root root 14 Dec  8 17:31 searchfile
+ls: cannot access testfile: No such file or directory
+-rw-r--r-- 1 root root 14 Dec  8 17:31 searchfile
+
+Case 7: To display the output and copy to file.
+# cat script1.sh
+date
+[root@desktop ~]# chmod 755 script1.sh
+[root@desktop ~]# ./script1.sh
+Sun Dec  8 19:07:54 IST 2019
+[root@desktop ~]# ./script1.sh >out
+[root@desktop ~]# ./script1.sh | tee out
+Sun Dec  8 19:08:18 IST 2019
+[root@desktop ~]# cat out
+Sun Dec  8 19:08:18 IST 2019
+
+case 8: to append the output using tee -a
+# ./script1.sh | tee -a out
+Sun Dec  8 19:10:07 IST 2019
+[root@desktop ~]# cat out
+Sun Dec  8 19:08:18 IST 2019
+Sun Dec  8 19:10:07 IST 2019
+
 
 
 ```
