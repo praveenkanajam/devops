@@ -513,7 +513,13 @@ To grep the files with some text
      3  abcE
      5  ABCAAAA
 
-
+To get the only the lines text abc matched.
+# cat -n text | grep abc -w
+     1  abc
+To get the only lines with starting abc
+# grep ^abc text
+abc
+abcE
 
 
 
