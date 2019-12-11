@@ -373,7 +373,7 @@ To deal with file, need to sort of data,based on requirement.
 
 Filters:
     1) Line Numbers : head, tail
-    2) Row Based    : grep ( -c count,-e multiple words,-f search list from file,-v, invert search,-i ignore case sensitive,-l matched files,-h matched output,-w to search with exact word , -x only that pattern)
+    2) Row Based    : grep ( -c count,-e multiple words,-f search list from file,-v, invert search,-y or -i ignore case sensitive,-l files with match, -L files without match,-h matched output,-w to search with exact word , -x only that pattern, -q quite it will not show the output.we need to check from exit status, -q -s quite output wit out errors or $>/dev/null we need to check from exit status)
     3) Coloum Based : 
 
 1)Head: 
@@ -562,6 +562,77 @@ To get the before lines . -B n
 --
      9  mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
     10  operator:x:11:0:operator:/root:/sbin/nologin
+
+
+    # cat -A passwd |head
+root:x:0:0:root:/root:/bin/bash$
+bin:x:1:1:bin:/bin:/sbin/nologin$
+daemon:x:2:2:daemon:/sbin:/sbin/nologin$
+adm:x:3:4:adm:/var/adm:/sbin/nologin$
+lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin$
+sync:x:5:0:sync:/sbin:/bin/sync$
+shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown$
+halt:x:7:0:halt:/sbin:/sbin/halt$
+mail:x:8:12:mail:/var/spool/mail:/sbin/nologin$
+operator:x:11:0:operator:/root:/sbin/nologin$
+
+# grep abc text
+abc
+abcE
+XabcX
+123abc
+345 abc
+[root@desktop Desktop]# grep ^abc text
+abc
+abcE
+[root@desktop Desktop]# grep abc$ text
+abc
+123abc
+345 abc
+
+
+# grep abc text
+abc
+abcE
+XabcX
+123abc
+345 abc
+[root@desktop Desktop]# grep ^abc text
+abc
+abcE
+[root@desktop Desktop]# grep abc$ text
+abc
+123abc
+345 abc
+
+# cat -n text
+     1  abc
+     2  ABC
+     3
+     4  abcE
+     5  XabcX
+     6
+     7  ABCAAAA
+     8
+     9  123abc
+    10
+    11  345 abc
+[root@desktop Desktop]# cat -n text | grep ^$
+[root@desktop Desktop]# grep ^$ text
+
+
+
+
+[root@desktop Desktop]# grep ^$ text -v
+abc
+ABC
+abcE
+XabcX
+ABCAAAA
+123abc
+345 abc
+
+
 
 
 
