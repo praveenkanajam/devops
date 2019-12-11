@@ -373,7 +373,7 @@ To deal with file, need to sort of data,based on requirement.
 
 Filters:
     1) Line Numbers : head, tail
-    2) Row Based    : grep ( -c count,-e multiple words,-f search list from file,-v, invert search,-y or -i ignore case sensitive,-l files with match, -L files without match,-h matched output,-w to search with exact word , -x only that pattern, -q quite it will not show the output.we need to check from exit status, -q -s quite output wit out errors or $>/dev/null we need to check from exit status)
+    2) Row Based    : grep ( -c count,-e multiple words,-f search list from file,-v, invert search,-y or -i ignore case sensitive,-l files with match, -L files without match,-h matched output,-w to search with exact word , -x only that pattern, -q quite it will not show the output.we need to check from exit status, -q -s quite output wit out errors or $>/dev/null we need to check from exit status, -R to serach word in folder)
     3) Coloum Based : 
 
 1)Head: 
@@ -563,7 +563,7 @@ To get the before lines . -B n
      9  mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
     10  operator:x:11:0:operator:/root:/sbin/nologin
 
-
+To verify the end of the line observe te $ symbol.
     # cat -A passwd |head
 root:x:0:0:root:/root:/bin/bash$
 bin:x:1:1:bin:/bin:/sbin/nologin$
@@ -590,7 +590,7 @@ abc
 123abc
 345 abc
 
-
+To grep the words starting with abc , hear ^ denotes the starting of the line, $ denotes the end of the line
 # grep abc text
 abc
 abcE
@@ -617,12 +617,13 @@ abc
      9  123abc
     10
     11  345 abc
-[root@desktop Desktop]# cat -n text | grep ^$
+
+To search the empty lines in text file.
 [root@desktop Desktop]# grep ^$ text
 
 
 
-
+To grep the file and delete the empty lines. ^$ is denotes the empty lines -v invert search
 [root@desktop Desktop]# grep ^$ text -v
 abc
 ABC
