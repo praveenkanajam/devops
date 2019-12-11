@@ -373,7 +373,7 @@ To deal with file, need to sort of data,based on requirement.
 
 Filters:
     1) Line Numbers : head, tail
-    2) Row Based    : grep
+    2) Row Based    : grep ( -c count,-e multiple words,-f search list from file,-v, invert search,-i ignore case sensitive,-l matched files,-h matched output,-w to search with exact word , -x only that pattern)
     3) Coloum Based : 
 
 1)Head: 
@@ -525,6 +525,35 @@ To get the only lines with starting abc
 abc
 abcE
 
+To get the exact pattern : we need to use -x in that line
+# cat text
+abc
+ABC
+abcE
+XadcX
+ABCAAAA
+[root@desktop Desktop]# grep abc text -x
+abc
+[root@desktop Desktop]# grep abc text -x -i
+abc
+ABC
+[root@desktop Desktop]#
+
+To grep the file and list lines after the lines also. using "-A n"
+# cat -n passwd | grep root -A 1
+     1  root:x:0:0:root:/root:/bin/bash
+     2  bin:x:1:1:bin:/bin:/sbin/nologin
+--
+    10  operator:x:11:0:operator:/root:/sbin/nologin
+    11  games:x:12:100:games:/usr/games:/sbin/nologin
+[root@desktop Desktop]# cat -n passwd | grep root -A 2
+     1  root:x:0:0:root:/root:/bin/bash
+     2  bin:x:1:1:bin:/bin:/sbin/nologin
+     3  daemon:x:2:2:daemon:/sbin:/sbin/nologin
+--
+    10  operator:x:11:0:operator:/root:/sbin/nologin
+    11  games:x:12:100:games:/usr/games:/sbin/nologin
+    12  ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin
 
 
 
