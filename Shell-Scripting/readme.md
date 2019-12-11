@@ -307,7 +307,7 @@ NOte: hear exit status will helps.
 ```
 Meta-Characters: 
 a-z,0-9,_ (Normal characters)
-~!@#$%^&*() (Special Character)
+~!@#$%^&*() (Special Character) space
         ---------------------------------------------------------------
         1) BackSlach(\) --- it will escape the special character.
 
