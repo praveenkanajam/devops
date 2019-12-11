@@ -287,6 +287,83 @@ Message1
 1
 Note: Hear we Had exproted the exit status 1 in script
 
+Importance of exit status:
+IN this example one command is exited but it will not stoped, it continued to execute the next command.
+Example:
+# cat exit_test.sh
+#!/bin/bash
+echo Hai
+eeho Hello
+echo bye
+[root@desktop ~]# chmod +x exit_test.sh
+[root@desktop ~]# ./exit_test.sh
+Hai
+./exit_test.sh: line 3: eeho: command not found
+bye
+
+NOte: hear exit status will helps.
 ```
+# ***** Quotes ****************
+```
+Meta-Characters: 
+a-z,0-9,_ (Normal characters)
+~!@#$%^&*() (Special Character)
+        ---------------------------------------------------------------
+        1) BackSlach(\) --- it will escape the special character.
+
+        # echo *
+        CentOS-7-x86_64-DVD-1810.iso etc_bkp etc_bkp1 passwd SampleWebApp.war Testfile1.txt Testfile.txt
+        
+        # echo \*
+        *
+
+        # echo $$
+        17514
+        [root@desktop Desktop]# echo \$\$
+        $$
+        [root@desktop Desktop]# echo \* \$\$
+        * $$
+        -------------------------------------------------------------------------
+        2) Single Quotes('')
+        # cat script3.sh
+        #!/bin/bash
+        echo 'Today Date is `date`'
+
+        [root@desktop Desktop]# ./script3.sh
+        Today Date is `date`
+        [root@desktop Desktop]# vim script3.sh
+        [root@desktop Desktop]# ./script3.sh
+        Today Date is Sun Dec  8 23:08:24 IST 2019
+        [root@desktop Desktop]# cat script3.sh
+        #!/bin/bash
+        echo "Today Date is `date`"
+        Note: `` is command qutoes
+        
+        -----
+        # echo "the status of prvious command = $?"
+        the status of prvious command = 0
+        [root@desktop Desktop]# echo 'the status of prvious command = $?'
+        the status of prvious command = $?
+        [root@desktop Desktop]# echo "the status of prvious command = `$?`"
+        bash: 0: command not found...
+        the status of prvious command =
+        -----------------------------------------------
+        # echo '$$'="$$"
+        $$=17514
+        -----------------------------------------------
+        # echo a                            b
+        a b
+        [root@desktop Desktop]# echo 'a                           b'
+        a                           b
+        [root@desktop Desktop]# echo "a                           b"
+        a                           b
+
+
+
+
+        3) Double quotes
+        It is alos covered in the above. Please refer.
+```
+
 ssh-pass
 https://www.cyberciti.biz/faq/noninteractive-shell-script-ssh-password-provider/
