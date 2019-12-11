@@ -261,6 +261,32 @@ Note: Hear /dev/null --> it will nullify the output.
 [root@desktop ~]# echo $?
 130
 
+----
+# cat script1.sh
+date
+echo "Message1"
+exit
+echo "Message2"
+[root@desktop ~]# chmod +x script1.sh
+[root@desktop ~]# ./script1.sh
+Sun Dec  8 22:17:51 IST 2019
+Message1
+[root@desktop ~]# echo $?
+0
+
+----
+# cat script1.sh
+date
+echo "Message1"
+exit 1
+echo "Message2"
+[root@desktop ~]# ./script1.sh
+Sun Dec  8 22:19:41 IST 2019
+Message1
+[root@desktop ~]# echo $?
+1
+Note: Hear we Had exproted the exit status 1 in script
+
 ```
 ssh-pass
 https://www.cyberciti.biz/faq/noninteractive-shell-script-ssh-password-provider/
