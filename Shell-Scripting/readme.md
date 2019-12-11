@@ -240,10 +240,24 @@ When comming to pipes, i will utilize the ram and very faster than disk.
 
 Pipes - Symbol - |
 
-
-
+# cat /etc/passwd | grep root
+root:x:0:0:root:/root:/bin/bash
+operator:x:11:0:operator:/root:/sbin/nologin
+```
+#           Exit Status
+![kill](Exit_status.PNG)
 ```
 
+# ls >/dev/null
+[root@desktop ~]# echo $?
+0
+[root@desktop ~]# lss &>/dev/null
+[root@desktop ~]# echo $?
+127
+[root@desktop ~]# sleep 400
+╚
+[root@desktop ~]# echo $?
+130
 
 ```
 ssh-pass
