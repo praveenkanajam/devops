@@ -994,7 +994,7 @@ Search with empno and replace manager as Devops.
 106,Stuart Gant,HR Manager
 107,Damon Stones,Practice Director
 
-To search a word and replace with other word.
+To search a word and replace with othper word.
 # echo 'apple ant' | sed 's/a/A/'
 Apple ant
 To search a word and replace globally
@@ -1002,7 +1002,15 @@ To search a word and replace globally
 Apple Ant
 [root@desktop Desktop]# echo 'apple ant' |sed 's/a/A/g'
 
+To replace the first occurance of a to A
+# echo 'apple ant' | sed 's/a/A/1'
+Apple ant
 
+To replace the second occurance of a to A
+# echo 'apple ant' | sed 's/a/A/1'
+Apple ant
+[root@desktop Desktop]# echo 'apple ant' | sed 's/a/A/2'
+apple Ant
 
 
 
