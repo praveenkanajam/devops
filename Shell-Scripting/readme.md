@@ -1012,6 +1012,70 @@ Apple ant
 [root@desktop Desktop]# echo 'apple ant' | sed 's/a/A/2'
 apple Ant
 
+to Search with lower case and replce with caps.
+# sed 's/ceo/ceoCAP/ig' emp
+101,John Doe,ceoCAP
+102,Jason Smith,IT Manager
+103,Raj Reddy,Sysadmin
+104,Anand Ram,Developer
+105,Jane Miller,Sales Manager
+106,Stuart Gant,HR Manager
+107,Damon Stones,Practice Director
+
+note /i is caseinsetive flags, /g is glogal flag
+----------
+APPEND: to append the data
+# sed '2 a hellow,everyone' emp
+101,John Doe,CEO
+102,Jason Smith,IT Manager
+hellow,everyone
+103,Raj Reddy,Sysadmin
+104,Anand Ram,Developer
+105,Jane Miller,Sales Manager
+106,Stuart Gant,HR Manager
+107,Damon Stones,Practice Director
+
+To append a line on the last line.
+# sed '$ a new line' emp
+101,John Doe,CEO
+102,Jason Smith,IT Manager
+hellowddd,everyone
+hellowddd,everyone
+103,Raj Reddy,Sysadmin
+104,Anand Ram,Developer
+105,Jane Miller,Sales Manager
+106,Stuart Gant,HR Manager
+107,Damon Stones,Practice Director
+new line
+
+Insert: it will inset the data in line ,if we want to insert in line 1.
+# sed '1 i newline' emp
+newline
+101,John Doe,CEO
+102,Jason Smith,IT Manager
+hellowddd,everyone
+hellowddd,everyone
+103,Raj Reddy,Sysadmin
+104,Anand Ram,Developer
+105,Jane Miller,Sales Manager
+106,Stuart Gant,HR Manager
+107,Damon Stones,Practice Director
+
+
+--- 
+Change: to delete the record at the line 2 and replace with a new record.
+# sed '2 c New line' emp
+101,John Doe,CEO
+New line
+hellowddd,everyone
+hellowddd,everyone
+103,Raj Reddy,Sysadmin
+104,Anand Ram,Developer
+105,Jane Miller,Sales Manager
+106,Stuart Gant,HR Manager
+107,Damon Stones,Practice Director
+
+
 
 
 
