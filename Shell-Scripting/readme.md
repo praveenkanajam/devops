@@ -1075,6 +1075,17 @@ hellowddd,everyone
 106,Stuart Gant,HR Manager
 107,Damon Stones,Practice Director
 
+# sed 's/22/355/' sshd_config | grep 355
+#Port 355
+
+# sed 's/#Port 22/Port 355/' sshd_config | grep 355
+Port 355
+
+To change the value #  X11Forward to X11 with out hash
+# sed -i '/X11Forwarding no/ c X11Forwarding no' sshd_config
+
+
+
 
 
 
