@@ -1122,6 +1122,26 @@ Properties of Variable: when ever we creat a variable, it will get some properti
 
     [root@desktop /]#
     
+    ---
+     . or souce are shell bilt in cmd, this will not different pid 
+
+     # echo $c
+
+[root@desktop Desktop]# cat script4.sh
+c=10
+export c
+[root@desktop Desktop]# . script4.sh
+[root@desktop Desktop]# echo $c
+10
+Note: but this will works temporaly , if shell session closed. this will removed.
+
+To make it persistant we need to add in bash_profile file.
+    1. vim .bash_profile
+    2. got to last line and type ". /root/Desktop/script4.sh"
+    3. save and exit
+by using the above steps when ever you login to the machie with any shell, it will be accetpt the varibles.
+
+
     3) Scalar
 ```
 
