@@ -375,8 +375,8 @@ To deal with file, need to sort of data,based on requirement.
 
 Filters:
     1) Line Numbers : head, tail
-    2) Row Based    : grep ( -c count,-e multiple words,-f search list from file,-v, invert search,-y or -i ignore case sensitive,-l files with match, -L files without match,-h matched output,-w to search with exact word , -x only that pattern, -q quite it will not show the output.we need to check from exit status, -q -s quite output wit out errors or $>/dev/null we need to check from exit status, -R to serach word in folder)
-    3) Coloum Based : 
+    2) Row Based    : grep ( -c count,-e multiple words,-f search list from file,-v, invert search,-y or -i ignore case sensitive,-l files with match, -L files without match,-h matched output,-w to search with exact word , -x only that pattern, -q quite it will not show the output.we need to check from exit status, -q -s quite output wit out errors or $>/dev/null we need to check from exit status, -R to serach word in folder),sort,uniq
+    3) Coloum Based : cut (default delimter is \t)
 
 1)Head: 
 By default it will display 10 lines
@@ -644,7 +644,93 @@ To search a word in a folder insted of file we need to usr -R option and -s opti
 # grep root /etc -R -s -w
 
 
+---------------------------------
+Sort: To sort text, numbers..
 
+# echo ' 12
+23
+43
+12
+56
+78
+34
+65
+34
+100
+32
+23
+6' | sort -n | uniq
+6
+12
+ 12
+23
+32
+34
+43
+56
+65
+78
+100
+
+CUT: In cut command Default delimiter is \t
+
+# echo -e "1\t2\t3\n4\t5\t6\n7\t8\t9"
+1       2       3
+4       5       6
+7       8       9
+[root@desktop /]# echo -e "1\t2\t3\n4\t5\t6\n7\t8\t9" | cut -f1
+1
+4
+7
+[root@desktop /]# echo -e "1\t2\t3\n4\t5\t6\n7\t8\t9" | cut -f3
+3
+6
+9
+
+# echo -e "1\t2\t3\n4\t5\t6\n7\t8\t9" | cut -f1,3
+1       3
+4       6
+7       9
+[root@desktop /]# echo -e "1\t2\t3\n4\t5\t6\n7\t8\t9" | cut -f2,3
+2       3
+5       6
+8       9
+
+To get the field 2 to last field:
+[root@desktop /]# echo -e "1\t2\t3\n4\t5\t6\n7\t8\t9" | cut -f2-
+2       3
+5       6
+8       9
+
+# cut -d : -f1 passwd |head
+root
+bin
+daemon
+adm
+lp
+sync
+shutdown
+halt
+mail
+operator
+
+# cut -d : -f5-$NF passwd | head -2
+root:/root:/bin/bash
+bin:/bin:/sbin/nologin
+
+# cut -d : -f1,3 passwd | head -2
+root:0
+bin:1
+
+# cut -d : -f1-3 passwd | head -2
+root:x:0
+bin:x:1
+
+
+
+
+
+---------------------------------
 
 ```
 ssh-pass
