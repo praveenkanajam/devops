@@ -1083,6 +1083,11 @@ Port 355
 
 To change the value #  X11Forward to X11 with out hash
 # sed -i '/X11Forwarding no/ c X11Forwarding no' sshd_config
+```
+#     ************ Variable **************************
+
+## variable is nothing but, If you assign a name to set of data.
+.
 
 
 
