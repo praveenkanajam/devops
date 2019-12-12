@@ -366,6 +366,8 @@ a-z,0-9,_ (Normal characters)
 ```
 # ****** Text Filters ***********
 
+![grep](Grep.PNG)
+
 ```
 Why ?
 hear everthing is a file.
@@ -634,6 +636,12 @@ ABCAAAA
 345 abc
 
 
+To search a word in a folder insterd of file we need to use -R option.
+# grep root /etc -R
+
+To search a word in a folder insted of file we need to usr -R option and -s option to ignore errors or &>/dev/null and -w to exact word 
+
+# grep root /etc -R -s -w
 
 
 
