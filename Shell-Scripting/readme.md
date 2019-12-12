@@ -687,21 +687,21 @@ CUT: In cut command Default delimiter is \t
 6
 9
 
+To cut the field 1 and 3:
 # echo -e "1\t2\t3\n4\t5\t6\n7\t8\t9" | cut -f1,3
 1       3
 4       6
 7       9
-[root@desktop /]# echo -e "1\t2\t3\n4\t5\t6\n7\t8\t9" | cut -f2,3
-2       3
-5       6
-8       9
 
 To get the field 2 to last field:
-[root@desktop /]# echo -e "1\t2\t3\n4\t5\t6\n7\t8\t9" | cut -f2-
+[root@desktop /]# echo -e "1\t2\t3\n4\t5\t6\n7\t8\t9" | cut -f2-  
+                                    or
+                  echo -e "1\t2\t3\n4\t5\t6\n7\t8\t9" | cut -f2-$NF  
 2       3
 5       6
 8       9
 
+The to use the delimiter using the common value -d :
 # cut -d : -f1 passwd |head
 root
 bin
@@ -713,6 +713,7 @@ shutdown
 halt
 mail
 operator
+
 
 # cut -d : -f5-$NF passwd | head -2
 root:/root:/bin/bash
@@ -726,7 +727,46 @@ bin:1
 root:x:0
 bin:x:1
 
+To cut the characters in a text:
+# echo "redhat" | cut -c 1-3
+red
+[root@desktop Desktop]# echo "redhat" | cut -c 2-
+edhat
+[root@desktop Desktop]# echo "redhat" | cut -c 2-$NF
+edhat
+[root@desktop Desktop]# echo "redhat" | cut -c 3-$NF
+dhat
 
+Cut will not work in we have unformated spaces. Let see in the below.
+# free -m
+              total        used        free      shared  buff/cache   available
+Mem:           3789        1200         319          42        2269        2258
+Swap:          3275           0        3275
+
+# free -m | cut -f7
+              total        used        free      shared  buff/cache   available
+Mem:           3789        1200         318          42        2269        2258
+Swap:          3275           0        3275
+Note: it is failed due to unformated spaces, spaces are not uniform. To overcome this we need to use awk.
+
+AWK: Default delimiter is 1.single space,2.multiple spaces,3.Tab space all to gether as default delimite.
+        Syntax: awk {options} '{awk-internal commands}' file|stdin
+
+# free -m |grep ^Mem| awk '{print $7}'
+2255
+[root@desktop Desktop]# echo -e "a b   c     d\t\t\te\tf"
+a b   c     d                   e       f
+[root@desktop Desktop]# echo -e "a b   c     d\t\t\te\tf"|cut -f1
+a b   c     d
+[root@desktop Desktop]# echo -e "a b   c     d\t\t\te\tf"|cut -f3
+
+[root@desktop Desktop]# echo -e "a b   c     d\t\t\te\tf"|awk '{print $1}'
+a
+[root@desktop Desktop]# echo -e "a b   c     d\t\t\te\tf"|awk '{print $2}'
+b
+[root@desktop Desktop]# echo -e "a b   c     d\t\t\te\tf"|awk '{print $4}'
+d
+------------------------------------------------------------------
 
 
 
