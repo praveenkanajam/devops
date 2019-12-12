@@ -984,9 +984,23 @@ Search and replace:
 106,Stuart Gant,HR Devops
 107,Damon Stones,Practice Director
 
+Search with empno and replace manager as Devops.
+# sed '/105/s/Manager/Devops/' emp
+101,John Doe,CEO
+102,Jason Smith,IT Manager
+103,Raj Reddy,Sysadmin
+104,Anand Ram,Developer
+105,Jane Miller,Sales Devops
+106,Stuart Gant,HR Manager
+107,Damon Stones,Practice Director
 
-
-
+To search a word and replace with other word.
+# echo 'apple ant' | sed 's/a/A/'
+Apple ant
+To search a word and replace globally
+# echo 'apple ant' |sed 's/a/A/g'
+Apple Ant
+[root@desktop Desktop]# echo 'apple ant' |sed 's/a/A/g'
 
 
 
