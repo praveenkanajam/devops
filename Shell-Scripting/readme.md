@@ -1155,6 +1155,43 @@ by using the above steps when ever you login to the machie with any shell, it wi
 # echo ${class[2]}
 1stclass
 
+
+[root@desktop ~]# echo ${class[*]}
+lkg ukg 1stclass 2ndclass
+[root@desktop ~]# echo ${class[@]}
+lkg ukg 1stclass 2ndclass
+[root@desktop ~]# echo ${#class[@]}
+4
+[root@desktop ~]# echo ${#class[*]}
+4
+[root@desktop ~]# echo ${#class[1]}
+3
+[root@desktop ~]# vim passwordlength.sh
+[root@desktop ~]# chmod +x passwordlength.sh
+[root@desktop ~]# ./passwordlength.sh
+enter passwordpraveen
+ password length: 7
+[root@desktop ~]# cat passwordlength.sh
+#!/bin/bash
+read -p "enter password" passwd[0]
+c=${#passwd[0]}
+echo " password length: $c"
+
+
+# ./length.sh
+${student[0]}=rama
+${student[1]}=ravan
+${student[2]}=ramu
+${student[3]}=rakshan
+${student[4]}=ramesh
+${student[5]}=rita
+${student[6]}=rinku
+${student[7]}=
+${student[*]}=rama ravan ramu rakshan ramesh rita rinku
+${student[@]}=rama ravan ramu rakshan ramesh rita rinku
+${#student[*]}=7
+
+
 ```
 
 
