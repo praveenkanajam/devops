@@ -1142,7 +1142,19 @@ To make it persistant we need to add in bash_profile file.
 by using the above steps when ever you login to the machie with any shell, it will be accetpt the varibles.
 
 
-    3) Scalar
+    3) Scalar -->arrays
+
+    # class[0]=lkg
+[root@desktop ~]# class[1]=ukg
+[root@desktop ~]# class[2]=1stclass
+[root@desktop ~]# class[3]=2ndclass
+
+# echo ${class[2]}
+1stclass
+
+# echo ${class[2]}
+1stclass
+
 ```
 
 
