@@ -376,7 +376,7 @@ To deal with file, need to sort of data,based on requirement.
 Filters:
     1) Line Numbers : head, tail
     2) Row Based    : grep ( -c count,-e multiple words,-f search list from file,-v, invert search,-y or -i ignore case sensitive,-l files with match, -L files without match,-h matched output,-w to search with exact word , -x only that pattern, -q quite it will not show the output.we need to check from exit status, -q -s quite output wit out errors or $>/dev/null we need to check from exit status, -R to serach word in folder),sort,uniq
-    3) Coloum Based : cut (default delimter is \t)
+    3) Coloum Based : cut (default delimter is \t),awk ( default delimitor space),SED
 
 1)Head: 
 By default it will display 10 lines
@@ -751,7 +751,7 @@ Note: it is failed due to unformated spaces, spaces are not uniform. To overcome
 
 AWK: Default delimiter is 1.single space,2.multiple spaces,3.Tab space all to gether as default delimite.
         Syntax: awk {options} '{awk-internal commands}' file|stdin
-
+                 Option : -F --> delimiter
 # free -m |grep ^Mem| awk '{print $7}'
 2255
 [root@desktop Desktop]# echo -e "a b   c     d\t\t\te\tf"
@@ -766,7 +766,232 @@ a
 b
 [root@desktop Desktop]# echo -e "a b   c     d\t\t\te\tf"|awk '{print $4}'
 d
+
+# free -m | awk  '/Mem/{print $(NF-1),$NF}'
+2270 2253
+[root@desktop Desktop]# awk '/root/{print}
+>
+[root@desktop Desktop]# awk '/root/{print}' passwd
+root:x:0:0:root:/root:/bin/bash
+operator:x:11:0:operator:/root:/sbin/nologin
+[root@desktop Desktop]# awk '/root/{print $NF}' passwd
+root:x:0:0:root:/root:/bin/bash
+operator:x:11:0:operator:/root:/sbin/nologin
+[root@desktop Desktop]# awk -F : '/root/{print $NF}' passwd
+/bin/bash
+/sbin/nologin
+[root@desktop Desktop]# awk -F : '/root/{print $(NF-1)}' passwd
+/root
+/root
+[root@desktop Desktop]# awk -F : '/root/{print $(NF-1)",",$NF}' passwd
+/root, /bin/bash
+/root, /sbin/nologin
+[root@desktop Desktop]# awk -F : '/root/{print $(NF-1)","$NF}' passwd
+/root,/bin/bash
+/root,/sbin/nologin
+[root@desktop Desktop]# awk -F : '/root/{print $(NF-1)","$NF}' passwd
+/root,/bin/bash
+/root,/sbin/nologin
+
 ------------------------------------------------------------------
+
+
+SED: Stream Line Editor.
+sed {options} {sed-commands} Inputs
+
+Commands:
+p - print
+d - delete
+s - substute
+i - insert
+a - append
+c - change
+Note: in sed command by default with 'p' option it will be display the duplicates.
+To remove the duplicates we need to use  -n option before 'p'
+# sed 'p' employee.txt | head -4
+101,John Doe,CEO
+101,John Doe,CEO
+102,Jason Smith,IT Manager
+102,Jason Smith,IT Manager
+
+To remove the dupliates.
+# sed -n 'p' employee.txt | head -4
+101,John Doe,CEO
+102,Jason Smith,IT Manager
+103,Raj Reddy,Sysadmin
+104,Anand Ram,Developer
+
+To Search a String :
+# sed -n '/CEO/ p' employee.txt
+101,John Doe,CEO
+
+To Search a multiple strings:
+# sed -n -e '/CEO/ p' -e '/Manager/ p' employee.txt
+101,John Doe,CEO
+102,Jason Smith,IT Manager
+105,Jane Miller,Sales Manager
+106,Stuart Gant,HR Manager
+
+# cat search.sed
+/John/ p
+/Jane/ p
+[root@desktop Desktop]# sed -n -f search.sed employee.txt
+101,John Doe,CEO
+105,Jane Miller,Sales Manager
+
+To print range of lines.
+
+# sed -n '1,2 p' employee.txt
+101,John Doe,CEO
+102,Jason Smith,IT Manager
+[root@desktop Desktop]# sed -n '1,4 p' employee.txt
+101,John Doe,CEO
+102,Jason Smith,IT Manager
+103,Raj Reddy,Sysadmin
+104,Anand Ram,Developer
+[root@desktop Desktop]#
+
+Print from line 2 through the last line.
+# sed -n '2,$ p' employee.txt
+102,Jason Smith,IT Manager
+103,Raj Reddy,Sysadmin
+104,Anand Ram,Developer
+105,Jane Miller,Sales Manager
+106,Stuart Gant,HR Manager
+107,Damon Stones,Practice Director
+
+To print Odd number lines.
+# sed -n '1~2 p' employee.txt
+101,John Doe,CEO
+103,Raj Reddy,Sysadmin
+105,Jane Miller,Sales Manager
+107,Damon Stones,Practice Director
+
+
+Print lines starting from the 1st match of Jason until the 4th Line.
+# sed -n '/Jason/,4 p' employee.txt
+102,Jason Smith,IT Manager
+103,Raj Reddy,Sysadmin
+104,Anand Ram,Developer
+
+
+To print lines starting from the 1st match of Raj to Last line.
+# sed -n '/Raj/,$ p' employee.txt
+103,Raj Reddy,Sysadmin
+104,Anand Ram,Developer
+105,Jane Miller,Sales Manager
+106,Stuart Gant,HR Manager
+107,Damon Stones,Practice Director
+
+Print lines starting fro the line Matching Raj untill the line matching Jane:
+# sed -n '/Raj/,/Jane/ p' employee.txt
+103,Raj Reddy,Sysadmin
+104,Anand Ram,Developer
+105,Jane Miller,Sales Manager
+Note: if first conditon it will never check for next condition, if Raj is not available then Jane will not print.
+If Raj is available and Jane is not available, then it will print Raj to Last line.Just observe the below output.
+
+# sed -n '/Raj/,/sys/ p' employee.txt
+103,Raj Reddy,Sysadmin
+104,Anand Ram,Developer
+105,Jane Miller,Sales Manager
+106,Stuart Gant,HR Manager
+107,Damon Stones,Practice Director
+
+Print the line matching Raj and 2 lines immediately after that.
+# sed -n '/Raj/,+2 p' employee.txt
+103,Raj Reddy,Sysadmin
+104,Anand Ram,Developer
+105,Jane Miller,Sales Manager
+
+To delete 2nd line in file.
+# sed -i '2 d' emp
+[root@desktop Desktop]# cat emp
+101,John Doe,CEO
+103,Raj Reddy,Sysadmin
+104,Anand Ram,Developer
+105,Jane Miller,Sales Manager
+106,Stuart Gant,HR Manager
+107,Damon Stones,Practice Director
+
+To delete from line 1 through 4
+# sed '1,4 d' emp
+105,Jane Miller,Sales Manager
+106,Stuart Gant,HR Manager
+107,Damon Stones,Practice Director
+
+To delete the ODD number of Lines.
+# sed '1~2 d' emp
+102,Jason Smith,IT Manager
+104,Anand Ram,Developer
+106,Stuart Gant,HR Manager
+
+To delete the Even number of lines.
+# sed '2~2 d' emp
+101,John Doe,CEO
+103,Raj Reddy,Sysadmin
+105,Jane Miller,Sales Manager
+107,Damon Stones,Practice Director
+
+To search a word and delete a line.
+# sed '/Manager/ d' emp
+101,John Doe,CEO
+103,Raj Reddy,Sysadmin
+104,Anand Ram,Developer
+107,Damon Stones,Practice Director
+
+To search a word with out case sensitive and delete the line.
+# sed '/Manager/ d' emp
+101,John Doe,CEO
+103,Raj Reddy,Sysadmin
+104,Anand Ram,Developer
+107,Damon Stones,Practice Director
+
+To search # sed '/Jason/,4 d' emp
+101,John Doe,CEO
+105,Jane Miller,Sales Manager
+106,Stuart Gant,HR Manager
+107,Damon Stones,Practice Directora word Jason and delete upto line 4:
+
+To search a word and delete upto last line.
+# sed '/Jason/,$ d' emp
+101,John Doe,CEO
+
+To search a word and delete after 2 lines.
+# sed '/Jason/,+2 d' emp
+101,John Doe,CEO
+105,Jane Miller,Sales Manager
+106,Stuart Gant,HR Manager
+107,Damon Stones,Practice Director
+
+To search and delete empty lines.
+# sed '/^$/ d' emp
+101,John Doe,CEO
+102,Jason Smith,IT Manager
+103,Raj Reddy,Sysadmin
+104,Anand Ram,Developer
+105,Jane Miller,Sales Manager
+106,Stuart Gant,HR Manager
+107,Damon Stones,Practice Director
+
+Search and replace:
+# sed 's/Manager/Devops/' emp
+101,John Doe,CEO
+102,Jason Smith,IT Devops
+103,Raj Reddy,Sysadmin
+104,Anand Ram,Developer
+105,Jane Miller,Sales Devops
+106,Stuart Gant,HR Devops
+107,Damon Stones,Practice Director
+
+
+
+
+
+
+
+
+
 
 
 
