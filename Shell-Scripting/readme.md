@@ -1086,11 +1086,44 @@ To change the value #  X11Forward to X11 with out hash
 ```
 #     ************ Variable **************************
 
+
 ## variable is nothing but, If you assign a name to set of data.
-.
+```
+In Bash Variable Name = data
+var=data
+DATE='12-12-2019'
 
+To access the variable
+$Variable_Name
+$DATE
 
+To get the content:
+echo $DATE
 
+variables will be stored in ram, if we close the terminal the variables also removed.
+
+To remove variable we need to use unset command.
+# echo $DATE
+12-12-2019
+[root@desktop /]# unset DATE  --> overwriting the value with null value.
+[root@desktop /]# echo $DATE
+
+Properties of Variable: when ever we creat a variable, it will get some properties.
+    1) Readwrite ---> it will allows to over write.
+                     to over come this we need to use "readonly variable", to remove the read only we need to close the shell. even root user also unset the variable or overwrite the variable.
+    2) Local:   --->A variable declared as local is one that is visible only within the block of code in which it appears. It has local "scope". In a function, a local variable has meaning only within that function block
+    Example: 
+    # cat script3.sh
+    a=10
+    echo $a
+    [root@desktop /]# ./script3.sh
+    10
+    [root@desktop /]# echo $a
+
+    [root@desktop /]#
+    
+    3) Scalar
+```
 
 
 
