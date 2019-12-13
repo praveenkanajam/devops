@@ -1210,6 +1210,68 @@ var=$(( eqution))
     [root@desktop ~]# echo $add
     30
 
+Variable name:
+    a-z,A-Z,0-9,_
+    It should not have any special characters.
+    Variable name should not start with numeric.
+Ex:
+    1name=wrong
+    name1=right
+    _name=right
+
+```
+# ***** FUNCTIONS **********
+
+## Variable : If you assign a name to set of data.
+## Function : If you assign a name to set of commands.
+--
+Declare:
+
+    function() 
+    {
+            commands
+            commands
+    }
+Use: 
+    functionname
+
+--
+Types of commands: 
+command-name    {options} {Inputs}
+1) Binarey Files - (/bin,/usr,/sbin) ls , cat
+2) Shell Built in commands or keywords : history, source ,. ...
+3) Aliasas  --  alias l='ls -ltr'
+4) Functions 
+    To see the data of fuction : type functionname
+# type welcome
+welcome is a function
+welcome ()
+{
+    echo " Hellow every one";
+    echo " Welcome to Functions";
+    date;
+    ls --color=auto
+}
+
+    
+
+
+---
+Declare:
+# welcome ()
+> {
+> echo " Hellow every one"
+> echo " Welcome to Functions"
+> date
+> ls
+> }
+calling:
+[root@desktop ~]# welcome
+ Hellow every one
+ Welcome to Functions
+Mon Dec  9 18:05:03 IST 2019
+1                            clientinstall.sh  Documents     hellow                length.sh       passwordlength.sh  script1.sh
+
 
 ```
 
