@@ -1192,6 +1192,25 @@ ${student[@]}=rama ravan ramu rakshan ramesh rita rinku
 ${#student[*]}=7
 
 
+------------
+Variable Initization:
+1)command:
+    var=$(commands)
+    var=`commands`
+        # ./script12.sh
+2019-12-09
+[root@desktop ~]# cat script12.sh
+#!/bin/bash
+DATE=$(date +%F)
+echo $DATE
+
+2)Arithematic:
+var=$(( eqution))
+    # add=$((10+20))
+    [root@desktop ~]# echo $add
+    30
+
+
 ```
 
 
