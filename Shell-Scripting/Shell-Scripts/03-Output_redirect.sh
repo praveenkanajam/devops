@@ -1,6 +1,6 @@
 #!/bin/bash
 #Author : Praveen k
-clean
+clear
 echo "Serching of files 01* 02* 100*" 
 ls 01* 02* 100*
 echo " copying output to out1.txt"
