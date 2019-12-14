@@ -3,8 +3,10 @@
 clear
 echo "Serching of files 01* 02* 100*" 
 ls 01* 02* 100*
-echo " copying output to out1.txt"
+echo "----"
+
 ls 01* 02* 100* > out1.txt
+echo " copying output to out1.txt"
 cat out1.txt
 echo -e "\e[31m error not copied to out1.txt\e[0m"
 echo " --------------------------------------   "
