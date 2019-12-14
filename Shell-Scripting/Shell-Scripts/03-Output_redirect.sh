@@ -26,5 +26,5 @@ echo -e "\e[35mNullifiy the output\e[0m"
 ls 01* 02* 100* &>/dev/null 
 echo -e "\e[36m Exit status $(echo $?)\e[0m"
 echo "------------------------------------------------"
-echo -e "Date and time appending using redirectors in \e[32mtimestatmp.txt\e[0m file for record purporse"
+echo -e "Date and time appending using redirectors in \e[32mtimestamp.txt\e[0m file for record purporse"
 echo "Sritp execution on : $(date +%F\ \@\ %T)"|tee -a timestamp.txt
