@@ -1225,6 +1225,7 @@ Ex:
 ## Variable : If you assign a name to set of data.
 ## Function : If you assign a name to set of commands.
 --
+```
 Declare:
 
     function() 
@@ -1240,8 +1241,9 @@ Types of commands:
 command-name    {options} {Inputs}
 1) Binarey Files - (/bin,/usr,/sbin) ls , cat
 2) Shell Built in commands or keywords : history, source ,. ...
-3) Aliasas  --  alias l='ls -ltr'
-4) Functions 
+3) Functions 
+4) Aliasas  --  alias l='ls -ltr'
+Shell order: 1. alias,2.function,3.shell built in,4.binary files.
     To see the data of fuction : type functionname
 # type welcome
 welcome is a function
@@ -1253,7 +1255,7 @@ welcome ()
     ls --color=auto
 }
 
-    
+
 
 
 ---
@@ -1272,15 +1274,128 @@ calling:
 Mon Dec  9 18:05:03 IST 2019
 1                            clientinstall.sh  Documents     hellow                length.sh       passwordlength.sh  script1.sh
 
+To see the all the shell built in commmands:
+# enable | tail
+enable times
+enable trap
+enable true
+enable type
+enable typeset
+enable ulimit
+enable umask
+enable unalias
+enable unset
+enable wait
 
+##### enable | wc -l
+61
 ```
 
+unset -f function
+Properties: 
+1) RW- RO readonly -f functionname
+2) Local - Env export -f funcname
+          . scritp
+     
+To automate the scripfile creation:
+# Crt_Script(){
+> n=$(ls -1 script[0-9][0-9].sh|tail -1|sed -e 's/script//' -e 's/.sh//')
+> n=$(($n+1))
+> name="script$n.sh"
+> vim $name
+> chmod +x $name
+> echo $name
+> }
+[root@desktop ~]# type Crt_Script
+Crt_Script is a function
+Crt_Script ()
+{
+    n=$(ls -1 script[0-9][0-9].sh|tail -1|sed -e 's/script//' -e 's/.sh//');
+    n=$(($n+1));
+    name="script$n.sh";
+    vim $name;
+    chmod +x $name;
+    echo $name
+}
+[root@desktop ~]# Crt_Script
+script15.sh
+[root@desktop ~]# ls -lt script5.sh
+ls: cannot access script5.sh: No such file or directory
+[root@desktop ~]# ls -lt script15.sh
+-rwxr-xr-x 1 root root 5 Dec  9 18:58 script15.sh
+[root@desktop ~]# ./script15.sh
+Mon Dec  9 18:59:08 IST 2019
+[root@desktop ~]# ls -ltr
+total 29868
+drwxr-sr-x  11 root dip      4096 Aug  9 19:06 httpd-2.4.41
+-rw-r--r--   1 root root  7072373 Aug 13 05:07 httpd-2.4.41.tar.bz2
+-rw-------.  1 root root     1687 Aug 14 08:21 anaconda-ks.cfg
+-rw-r--r--.  1 root root     1718 Aug 14 08:28 initial-setup-ks.cfg
+drwxr-xr-x.  2 root root        6 Aug 14 08:28 Downloads
+drwxr-xr-x.  2 root root        6 Aug 14 08:28 Videos
+drwxr-xr-x.  2 root root        6 Aug 14 08:28 Templates
+drwxr-xr-x.  2 root root        6 Aug 14 08:28 Public
+drwxr-xr-x.  2 root root        6 Aug 14 08:28 Pictures
+drwxr-xr-x.  2 root root        6 Aug 14 08:28 Music
+drwxr-xr-x.  2 root root        6 Aug 14 08:28 Documents
+-rw-------.  1 root root 25538560 Aug 14 08:35 core.16461
+-rw-r--r--   1 root root 10291220 Nov 18 00:30 apache-tomcat-8.5.49.tar.gz
+-rw-r--r--   1 root root      230 Dec  2 21:16 clientinstall.sh
+-rw-r--r--   1 root root  3814011 Dec  5 21:48 etc_bkp.gzip
+-rw-r--r--   1 root root      406 Dec  7 11:39 desktop.pub
+-rw-------   1 root root     1675 Dec  7 11:39 desktop
+-rw-r--r--   2 root root       10 Dec  7 12:38 mainfile.txt
+-rw-r--r--   2 root root       10 Dec  7 12:38 mainfile_h.txt
+-rw-r--r--   1 root root    91721 Dec  7 16:24 hellow
+-rw-r--r--   1 root root    20342 Dec  8 12:29 install.sh
+drwxr-xr-x   9 root root      220 Dec  8 12:39 apache-tomcat-8.5.49
+-rw-r--r--   1 root root       50 Dec  8 17:12 BodyMessage
+-rw-r--r--   1 root root       14 Dec  8 17:31 searchfile
+-rw-r--r--   1 root root       65 Dec  8 18:48 1
+-rw-r--r--   1 root root       53 Dec  8 21:16 err
+-rw-r--r--   1 root root      103 Dec  8 21:19 out
+-rwxr-xr-x   1 root root       45 Dec  8 22:19 script13.sh
+-rwxr-xr-x   1 root root       41 Dec  8 22:45 exit_test.sh
+drwxr-xr-x.  2 root root     4096 Dec  9 15:31 Desktop
+-rwxr-xr-x   1 root root       16 Dec  9 17:12 script10.sh
+-rwxr-xr-x   1 root root       91 Dec  9 17:12 passwordlength.sh
+-rwxr-xr-x   1 root root      439 Dec  9 17:26 length.sh
+-rwxr-xr-x   1 root root       40 Dec  9 17:32 script12.sh
+-rwxr-xr-x   1 root root       45 Dec  9 18:36 script01.sh
+-rwxr-xr-x   1 root root       68 Dec  9 18:43 script14.sh
+-rwxr-xr-x   1 root root        5 Dec  9 18:58 script15.sh
 
+To save it in permenet we need to copy content of the Crt_scri file in .bash_profile
+----------
+Function will not create process, Yet it is a command.
 
+[root@desktop ~]# ./script18.sh
+value in main prg a=10
+a value in function  10
+[root@desktop ~]# cat script18.sh
+funct(){
+        echo "a value in function  $a"
+}
+a=10
+echo "value in main prg a=$a"
+funct
+
+# ./script19.sh
+value of a in function 10
+value of a in main = 10
+[root@desktop ~]# cat script19.sh
+funct()
+{
+        a=10
+        echo "value of a in function $a"
+}
+funct
+echo "value of a in main = $a"
 
 
 
 ---------------------------------
+
 
 ```
 ssh-pass
