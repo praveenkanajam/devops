@@ -1439,8 +1439,44 @@ Output:
  hai
  exit status 0
 
-```
 
+# ./script22.sh
+Hai
+ exit status 1
+[root@desktop ~]# cat script22.sh
+function1()
+{
+echo "Hai"
+return 1
+echo "bye"
+}
+function1
+echo " exit status $?"
+
+Output:
+# ./script22.sh
+Hai
+ exit status 1
+
+```
+# cat script23.sh
+#!/bin/bash
+arithm()
+{
+ADD=$(($a+$b))
+echo "Addtion $a + $b is $ADD"
+SUB=$(($a-$b))
+echo "Substration of $a - $b is $SUB"
+
+}
+a=50
+b=30
+arithm
+
+Output:
+./script23.sh
+Addtion 50 + 30 is 80
+Substration of 50 - 30 is 20
 ---------------------------------
 
 
