@@ -1,0 +1,10 @@
+shell daily
+
+1. Create a shell scritp with output on muti colours as text.  welcome to Redhat linux.
+   list the files 01* 02* 100* copy to out err out1 files
+
+2. append the output to appendfile.
+
+
+
+2.
