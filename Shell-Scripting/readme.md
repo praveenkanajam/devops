@@ -1274,7 +1274,9 @@ calling:
 Mon Dec  9 18:05:03 IST 2019
 1                            clientinstall.sh  Documents     hellow                length.sh       passwordlength.sh  script1.sh
 
-To see the all the shell built in commmands:
+***To see the all the functions -- declare or declare -f 
+-- sysetem bulitin,user created declare -F
+***To see the all the shell built in commmands:
 # enable | tail
 enable times
 enable trap
@@ -1379,7 +1381,7 @@ funct(){
 a=10
 echo "value in main prg a=$a"
 funct
-
+```
 # ./script19.sh
 value of a in function 10
 value of a in main = 10
@@ -1392,7 +1394,52 @@ funct()
 funct
 echo "value of a in main = $a"
 
+OUtput:
+# ./script19.sh
+value of a in function 10
+value of a in main = 10
 
+```
+```
+Funtion using local command.
+
+# cat script20.sh
+function1(){
+local a=20
+echo " a in Funtion =$a"
+}
+a=10
+function1
+echo " a in main program=$a"
+
+Output:
+# ./script20.sh
+ a in Funtion =20
+ a in main program=10
+
+```
+# ************ Exit status *******************
+
+```
+In function exit status is return. we need to use return.
+
+
+# cat script21.sh
+#!/bin/bash
+function1()
+{
+  echo " hai"
+  return 0
+  echo "bye"
+}
+function1
+echo " exit status $? "
+Output:
+# ./script21.sh
+ hai
+ exit status 0
+
+```
 
 ---------------------------------
 
