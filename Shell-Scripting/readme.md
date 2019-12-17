@@ -1299,7 +1299,9 @@ Properties:
 2) Local - Env export -f funcname
           . scritp
      
+```
 To automate the scripfile creation:
+
 # Crt_Script(){
 > n=$(ls -1 script[0-9][0-9].sh|tail -1|sed -e 's/script//' -e 's/.sh//')
 > n=$(($n+1))
@@ -1381,6 +1383,7 @@ funct(){
 a=10
 echo "value in main prg a=$a"
 funct
+```
 ```
 # ./script19.sh
 value of a in function 10
