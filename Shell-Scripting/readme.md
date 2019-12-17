@@ -1573,6 +1573,125 @@ All arguments : 20 30
 Process ID :18027
 count of arguments: 2
 
+----
+# cat script19.sh
+#!/bin/bash
+func()
+{
+echo ' output in Funtion'
+echo 'addition of two numbers $a $b: '$(($a+$b))
+echo 'Mul of two numbers $a $b: '$(($a*$b))
+echo "Program Name :"$0
+echo "All argurments :"$*
+echo "No of arguments :"$#
+echo "Proces id : "$$
+}
+a=$1
+b=$2
+echo 'Output in main program'
+echo 'Addition of two numbers $a + $b: '$(($a+$b))
+echo 'Mul of two numbers $a *b: '$(($a*$b))
+echo "Program Name :"$0
+echo "All argurments :"$*
+echo "No of arguments :"$#
+echo "Proces id : "$$
+func
+
+Output:
+# !./
+./script19.sh 10 30
+Output in main program
+Addition of two numbers $a + $b: 40
+Mul of two numbers $a *b: 300
+Program Name :./script19.sh
+All argurments :10 30
+No of arguments :2
+Proces id : 19070
+ output in Funtion
+addition of two numbers $a $b: 40
+Mul of two numbers $a $b: 300
+Program Name :./script19.sh
+All argurments :
+No of arguments :0
+Proces id : 19070
+
+Note: Hear a=$1 b=$2, in fuction it is accessing the variale $a and $b .
+      It can not access $1 and $2, those are arguments for the main program only.
+
+-----------
+# cat script20.sh
+#!/bin/bash
+func()
+{
+echo " output in function:::"
+echo 'value of $1 :' $1
+echo 'value of $2 :' $2
+echo 'all arguments $* :' $*
+echo 'no of Arguments $# :' $#
+echo 'Process ID $$ :' $$
+}
+echo " output in main prg :::"
+echo 'value of $1 :' $1
+echo 'value of $2 :' $2
+echo 'all arguments $* :' $*
+echo 'no of Arguments $# :' $#
+echo 'Process ID $$ :' $$
+func
+
+Output:
+# ./script20.sh 20 10
+ output in main prg :::
+value of $1 : 20
+value of $2 : 10
+all arguments $* : 20 10
+no of Arguments $# : 2
+Process ID $$ : 19468
+ output in function:::
+value of $1 :
+value of $2 :
+all arguments $* :
+no of Arguments $# : 0
+Process ID $$ : 19468
+
+Note: hear it is taken the process id same. But arguments passed under the main program will not accessed in function.
+For fuction argumets we need to provide. see the below example.
+
+---------
+Input:
+# cat script20.sh
+#!/bin/bash
+func()
+{
+echo " output in function:::"
+echo 'value of $1 :' $1
+echo 'value of $2 :' $2
+echo 'all arguments $* :' $*
+echo 'no of Arguments $# :' $#
+echo 'Process ID $$ :' $$
+}
+echo " output in main prg :::"
+echo 'value of $1 :' $1
+echo 'value of $2 :' $2
+echo 'all arguments $* :' $*
+echo 'no of Arguments $# :' $#
+echo 'Process ID $$ :' $$
+func 40 50
+
+
+Output:
+# ./script20.sh 20 10
+ output in main prg :::
+value of $1 : 20
+value of $2 : 10
+all arguments $* : 20 10
+no of Arguments $# : 2
+Process ID $$ : 19507
+ output in function:::
+value of $1 : 40
+value of $2 : 50
+all arguments $* : 40 50
+no of Arguments $# : 2
+Process ID $$ : 19507
 
 
 
