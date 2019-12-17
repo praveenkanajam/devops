@@ -1459,6 +1459,7 @@ Hai
  exit status 1
 
 ```
+```
 # cat script23.sh
 #!/bin/bash
 arithm()
@@ -1478,6 +1479,102 @@ Output:
 Addtion 50 + 30 is 80
 Substration of 50 - 30 is 20
 ---------------------------------
+
+```
+# ************* Types of Taking Input *************
+        1) While Executing
+                read
+        2) Before Executing
+                a.special variable
+                b.Option Parsing
+```
+Example program to read name and age:
+# cat script2.sh
+#!/bin/bash
+echo "Enter your Name: "
+read name
+echo "Enter your Age: "
+read age
+echo -e "\e[31mYour name : $name"
+echo -e "\e[32mYour Age  : $age\e[0m"
+
+Output: 
+# ./script2.sh
+Enter your Name:
+K manas Simha
+Enter your Age:
+5
+Your name : K manas Simha
+Your Age  : 5
+
+---------
+# cat script14.sh
+#!/bin/bash
+read -p "Enter your name :" name
+read -s -p"Enter your password :" passwd
+echo -e "Your name is : $name & Your password is:$passwd"
+Output:
+ # ./script14.sh
+Enter your name :praveen
+Enter your password :Your name is : praveen & Your password is:adb@321
+
+------
+special variable::::
+./script 10 20 
+
+$0 --- Name of the script.
+$1 --- First Argument of the script.
+$2 --- Second Aegument of the script.
+.
+.
+.
+$9 --- Last argument of the script.
+
+$*,$@ ---> All arguments.
+$# --- Number of values parsed to script.
+$$ --- PID of script. 
+
+# cat script15.sh
+#!/bin/bash
+echo 'value of $0 = ' $0
+echo 'value of $1 = ' $1
+echo 'value of $2 = ' $2
+echo 'value of $* = ' $*
+echo 'value of $@ = ' $@
+echo 'value of $# = ' $#
+echo 'value of $$ = ' $$
+
+Output:
+# ./script15.sh 10 20
+value of $0 =  ./script15.sh
+value of $1 =  10
+value of $2 =  20
+value of $* =  10 20
+value of $@ =  10 20
+value of $# =  2
+value of $$ =  17449
+-----------------
+# cat script16.sh
+#!/bin/bash
+a=$1
+b=$2
+echo 'addition of two numbers $a +  $b :' $(($a+$b))
+echo 'Multiplication of two numbers $a * $b: ' $(($a*$b))
+echo 'Program Name : '$0
+echo 'All arguments : '$*
+echo 'Process ID :'$$
+echo 'count of arguments:' $#
+
+# ./script16.sh 20 30
+addition of two numbers $a +  $b : 50
+Multiplication of two numbers $a * $b:  600
+Program Name : ./script16.sh
+All arguments : 20 30
+Process ID :18027
+count of arguments: 2
+
+
+
 
 
 ```
