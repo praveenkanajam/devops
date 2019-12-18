@@ -1695,6 +1695,104 @@ value of $2 : 50
 all arguments $* : 40 50
 no of Arguments $# : 2
 Process ID $$ : 19507
+-----------
+```
+# ********** Flow Control Commands ********************
+1) Case
+2) IF
+syntax: case $var in 
+            pattern1) commands
+                    ;; 
+            pattern2) commands
+                    ;;
+                    .
+                    .
+            pattern n) commnads
+                    ;;
+        esac
+
+example:
+# cat script21.sh
+#!/bin/bash
+read -p " Enter Value 1 : " a
+read -p " Enter Value 2 : " b
+
+read -p " Enter Operator (ADD|MUL|DIV|SUB) : " op
+
+case $op in
+        ADD) echo "You selected Addition operator"
+             echo "Addition : $(($a+$b))"
+             ;;
+        MUL) echo "You selected Multiplication Operator"
+             echo "Multiplication : $(($a*$b))"
+             ;;
+        DIV) echo "You selected Division Operator"
+             echo "Division : $(($a/$b))"
+             ;;
+        SUB) echo "You selected Subtraction Operator"
+             echo "Subtraction : $(($a-$b))"
+             ;;
+        *) echo "Invalid input. Please use  (ADD|SUB|MUL|DIV)"
+             ;;
+esac
+
+Output:
+
+# ./script21.sh
+ Enter Value 1 : 55
+ Enter Value 2 : 44
+ Enter Operator (ADD|MUL|DIV|SUB) : DIV
+You selected Division Operator
+Division : 1
+[root@desktop Desktop]# ./script21.sh
+ Enter Value 1 : 44
+ Enter Value 2 : 55
+ Enter Operator (ADD|MUL|DIV|SUB) : tll
+Invalid input. Please use  (ADD|SUB|MUL|DIV)
+
+Note: in the above program t11 case not found, it is redirected to * case.
+
+Example:
+# cat script22.sh
+#!/bin/bash
+USAGE()
+{
+  echo "Invalid input : $op"
+  echo "Select any one option : (ADD|MUL|DIV|SUB)"
+}
+read -p "Enter value 1 :" a
+read -p "Enter Value 2 :" b
+read -p "Select Operator (ADD|MUL|Div|SUB) :"  op
+case $op in
+        ADD) echo "You have selected ADD Operator"
+             echo "Addition : $(($a+$b))"
+             ;;
+        MUL) echo "You have selected MUL"
+             echo "Mul : $(($a*$b))"
+             ;;
+        DIV) echo "You have selected DIV"
+             echo "Div : $(($a/$b))"
+             ;;
+        SUB) echo "You have selected SUB"
+             echo "SUB : $(($a-$b))"
+             ;;
+          *) USAGE
+             ;;
+esac
+
+Output:
+# ./script22.sh
+Enter value 1 :100
+Enter Value 2 :200
+Select Operator (ADD|MUL|Div|SUB) :DIV
+You have selected DIV
+Div : 0
+[root@desktop Desktop]# ./script22.sh
+Enter value 1 :400
+Enter Value 2 :44
+Select Operator (ADD|MUL|Div|SUB) :l
+Invalid input : l
+Select any one option : (ADD|MUL|DIV|SUB)
 
 
 
