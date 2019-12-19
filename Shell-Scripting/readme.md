@@ -1709,8 +1709,28 @@ syntax: case $var in
                     .
             pattern n) commnads
                     ;;
-        esac
+   
+         esac
 
+For case sensitive you can you as below
+ADD|add)
+
+Note: hear we have a issue with the combination of " Add" it will come as invalid.
+we can use "tr" can trasform from small char to Cap char.
+### echo Add | tr [a-z] [A-Z]  --> this syntax will works only in linux
+        or 
+### echo Add | tr [:lower:] [:upper:] --> this will works in Linux and Unix
+ADD
+
+--
+# echo 123hai456 | tr -d [:alpha:]
+123456
+--
+for unmatched  cases
+*)
+
+
+```
 example:
 # cat script21.sh
 #!/bin/bash
@@ -1719,7 +1739,7 @@ read -p " Enter Value 2 : " b
 
 read -p " Enter Operator (ADD|MUL|DIV|SUB) : " op
 
-case $op in
+case $  op in
         ADD) echo "You selected Addition operator"
              echo "Addition : $(($a+$b))"
              ;;
@@ -1794,7 +1814,115 @@ Select Operator (ADD|MUL|Div|SUB) :l
 Invalid input : l
 Select any one option : (ADD|MUL|DIV|SUB)
 
+----------
+# cat script23.sh
+#!/bin/bash
 
+INVALID()
+{
+N="\e[0m"
+R="\e[31m"
+echo -e "$R invalid operatior $N"
+}
+
+read -p " enter value 1 :" a
+read -p " enter value 2 :" b
+read -p " enter the operatior :" op
+case $op in
+        add|ADD)
+        echo "addition of two numbers" $(($a+$b))
+        ;;
+
+        MUL|mul)
+        echo " Multiplication of two numbers" $(($a*$b))
+        ;;
+        *)
+        INVALID
+        ;;
+esac
+
+Output:
+
+# ./script23.sh
+ enter value 1 :20
+ enter value 2 :23
+ enter the operatior :Add
+ invalid operatior 
+--
+# cat script23.sh
+#!/bin/bash
+
+INVALID()
+{
+N="\e[0m"
+R="\e[31m"
+echo -e "$R invalid operatior $N"
+}
+
+read -p " enter value 1 :" a
+read -p " enter value 2 :" b
+read -p " enter the operatior :" op
+op=$(echo $op| tr [:lower:] [:upper:])
+case $op in
+
+        add|ADD)
+        echo "addition of two numbers" $(($a+$b))
+        ;;
+
+        MUL|mul)
+        echo " Multiplication of two numbers" $(($a*$b))
+        ;;
+        *)
+        INVALID
+        ;;
+esac
+
+Output:
+# ./script23.sh
+ enter value 1 :200
+ enter value 2 :12
+ enter the operatior :AdD
+addition of two numbers 212
+----------------------
+
+Note: in case command. if use ;& --> it will execute given pattern and execute next pattern also.
+
+----------
+```
+# **** IF statement ******
+IF:
+    1) Simple IF
+        if [ expr ]
+        then 
+            commands
+            commands
+        fi
+    2) if-else
+        if [ expr ]
+        then
+            commands
+            commands
+        else
+            commands
+            commands
+        fi
+    3)Else-if
+        if [ expr1 ]
+        then 
+            commands
+            commands
+        elif [ expr2]
+        then
+            commands
+            commands
+        elif [ expr3]
+        then
+            commands
+            commands
+        else
+            commands
+    fi
+    
 
 
 ```
