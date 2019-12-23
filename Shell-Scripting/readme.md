@@ -2163,7 +2163,7 @@ Note: to know about some examples.
 
 vim /etc/init.d/network
 ```
-[!File_exp.PNG](File_exp.PNG)
+![File_exp.PNG](File_exp.PNG)
 ```
 Expression:
 	1) String Comparsions
