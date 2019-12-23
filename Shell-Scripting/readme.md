@@ -1951,6 +1951,44 @@ Enter the Operator {ADD|MUL|DIV} Add
 ADD
 Addition of two number :30
 -------------
+# cat script25.sh
+#!/bin/bash
+USAGE()
+        {
+
+        N = '\e[0m'
+        R = '\e[31m]'
+         echo " Invalid Operator "
+         echo " Select any of one {ADD|MUL|DIV|SU}"
+        }
+read -p " enter value 1 " a
+read -p " enter value 2 " b
+read -p " enter Operator {ADD|MUL|SUB|DIV} " op
+op=$(echo $op|tr [a-z] [A-Z])
+if [ "$op" = ADD ]; then
+        echo " ADDITION OF TWO NUMBERS $(($a+$b))"
+elif [ "$op" = MUL ]; then
+        echo " Multiplication of two numbers $(($a*$b))"
+elif [ "$op" = SUB ]; then
+        echo " Subtraction of two numbers $(($a-$b))"
+elif [ "$op" = DIV ]; then
+        echo " Division  of two numbers $(($a/$b)) "
+else
+        USAGE
+fi
+
+Output:
+
+# ./script25.sh
+ enter value 1 2
+ enter value 2 30
+ enter Operator {ADD|MUL|SUB|DIV} aa
+./script25.sh: line 5: N: command not found
+./script25.sh: line 6: R: command not found
+ Invalid Operator
+ Select any of one {ADD|MUL|DIV|SU}
+
+ -------------------
 
 
 
