@@ -1717,12 +1717,14 @@ ADD|add)
 
 Note: hear we have a issue with the combination of " Add" it will come as invalid.
 we can use "tr" can trasform from small char to Cap char.
+
 ### echo Add | tr [a-z] [A-Z]  --> this syntax will works only in linux
         or 
 ### echo Add | tr [:lower:] [:upper:] --> this will works in Linux and Unix
 ADD
 
 --
+```
 # echo 123hai456 | tr -d [:alpha:]
 123456
 --
@@ -1730,6 +1732,7 @@ for unmatched  cases
 *)
 
 
+```
 ```
 example:
 # cat script21.sh
@@ -1886,9 +1889,9 @@ addition of two numbers 212
 ----------------------
 
 Note: in case command. if use ;& --> it will execute given pattern and execute next pattern also.
-
-----------
 ```
+----------
+
 # **** IF statement ******
 IF:
     1) Simple IF
@@ -1922,7 +1925,34 @@ IF:
         else
             commands
     fi
-    
+```    
+------
+
+#!/bin/bash
+read -p "Enter Value 1 " a
+read -p "Enter Value 2 " b
+read -p "Enter the Operator {ADD|MUL|DIV} " op
+op=$(echo $op|tr [a-z] [A-Z])
+echo $op
+if [ "$op" = ADD ]; then
+        echo "Addition of two number :$(($a +$b))"
+fi
+
+if [ "$op" = Mul ]; then
+        echo " Multiplication of two numbers : $(($a*$b))"
+fi
+
+
+Output:
+# ./script24.sh
+Enter Value 1 10
+Enter Value 2 20
+Enter the Operator {ADD|MUL|DIV} Add
+ADD
+Addition of two number :30
+-------------
+
+
 
 
 ```
