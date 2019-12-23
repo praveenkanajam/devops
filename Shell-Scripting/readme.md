@@ -1989,6 +1989,61 @@ Output:
  Select any of one {ADD|MUL|DIV|SU}
 
  -------------------
+To over come below situations. We need to use the -z to validate the string length.
+# ./script25.sh
+ enter value 1
+./script25.sh: line 33: syntax error: unexpected end of file
+
+----------
+
+# cat script25.sh
+#!/bin/bash
+USAGE()
+        {
+
+        N = '\e[0m'
+        R = '\e[31m]'
+         echo " Invalid Operator "
+         echo " Select any of one {ADD|MUL|DIV|SU}"
+        }
+read -p " enter value 1 " a
+        if [ -z "$a" ]; then
+        echo -e " Invalid Input \n  Please try again  "
+        exit 1
+        fi
+read -p " enter value 2 " b
+        if [ -z "$b" ]; then
+        echo -e " Invalid Input \n please ty again "
+        exit 1
+        fi
+read -p " enter Operator {ADD|MUL|SUB|DIV} " op
+op=$(echo $op|tr [a-z] [A-Z])
+if [ "$op" = ADD ]; then
+        echo " ADDITION OF TWO NUMBERS $(($a+$b))"
+elif [ "$op" = MUL ]; then
+        echo " Multiplication of two numbers $(($a*$b))"
+elif [ "$op" = SUB ]; then
+        echo " Subtraction of two numbers $(($a-$b))"
+elif [ "$op" = DIV ]; then
+        echo " Division  of two numbers $(($a/$b)) "
+else
+        USAGE
+fi
+
+Output:
+# ./script25.sh
+ enter value 1
+ Invalid Input
+  Please try again
+[root@desktop Desktop]# ./script25.sh
+ enter value 1 10
+ enter value 2
+ Invalid Input
+ please ty again
+
+Note: by using the the operator -z we had resolved.
+
+------------
 
 
 
