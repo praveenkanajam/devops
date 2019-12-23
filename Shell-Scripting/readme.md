@@ -2044,9 +2044,166 @@ Output:
 Note: by using the the operator -z we had resolved.
 
 ------------
+# cat script26.sh
+#!/bin/bash
+USAGE()
+{
+        N='\e[0m'
+        R='\e[31m'
+        G='\e[32m'
+        echo -e " $R Usage : $0 variable1 variable2 Operator(ADD|MUL|DIV|SUB $N)"
+        echo -e " $G example : ./script1 10 20 ADD $N "
+}
+a=$1
+b=$2
+op=$3
+op=$(echo $op|tr [a-z] [A-z])
+if [ "$op" = ADD ]; then
+        echo "Addition of $a and $b : $(($a+$b))"
+elif [ "$op" = MUL ]; then
+        echo " Multiplication of $a and $b : $(($a*$b))"
+elif [ "$op" = SUB ]; then
+        echo " SUbtraction of $a and $b : $(($a-$b))"
+elif [ "$op" = DIV ]; then
+        echo " Division of $a and $b : $(($a/$b))"
+else
+        USAGE
+fi
+
+Output:
+
+# ./script26.sh 10 20 JJ
+  Usage : ./script26.sh variable1 variable2 Operator(ADD|MUL|DIV|SUB )
+  example : ./script1 10 20 ADD 
+[root@desktop Desktop]# ./script26.sh 10 20 add
+Addition of 10 and 20 : 30
+---
+
+# cat script27.sh
+#!/bin/bash
+USAGE()
+{
+        N='\e[0m'
+        R='\e[31m'
+        G='\e[32m'
+        echo -e " $R Usage : $0 variable1 variable2 Operator(ADD|MUL|DIV|SUB $N)"
+        echo -e " $G example : ./script1 10 20 ADD $N "
+        exit 1
+}
+a=$1
+b=$2
+op=$3
+op=$(echo $op|tr [a-z] [A-z])
+if [ $# -lt 3 ];then
+        USAGE
+fi
+if [ "$op" = ADD ]; then
+        echo "Addition of $a and $b : $(($a+$b))"
+elif [ "$op" = MUL ]; then
+        echo " Multiplication of $a and $b : $(($a*$b))"
+elif [ "$op" = SUB ]; then
+        echo " SUbtraction of $a and $b : $(($a-$b))"
+elif [ "$op" = DIV ]; then
+        echo " Division of $a and $b : $(($a/$b))"
+else
+        USAGE
+fi
+
+Output:
+# ./script27.sh
+  Usage : ./script27.sh variable1 variable2 Operator(ADD|MUL|DIV|SUB )
+  example : ./script1 10 20 ADD 
+[root@desktop Desktop]# ./script27.sh 1 2
+  Usage : ./script27.sh variable1 variable2 Operator(ADD|MUL|DIV|SUB )
+  example : ./script1 10 20 ADD 
+[root@desktop Desktop]# ./script27.sh 1 2 MUL
+ Multiplication of 1 and 2 : 2
+
+Note: hear i will validate the no of inputs, if it is lesser than 3 then it will redirect to usage befor validaging.
+
+----
+
+# cat script27.sh
+#!/bin/bash
+USAGE()
+{
+        N='\e[0m'
+        R='\e[31m'
+        G='\e[32m'
+        echo -e " $R Usage : $0 variable1 variable2 Operator(ADD|MUL|DIV|SUB $N)"
+        echo -e " $G example : ./script1 10 20 ADD $N "
+        exit 1
+}
+a=$1
+b=$2
+op=$3
+if [ $# -lt 3 ];then
+        read -p " enter value1 " a
+        read -p " enter value2 " b
+        read -p " enter operator " op
+fi
+op=$(echo $op|tr [a-z] [A-z])
+if [ "$op" = ADD ]; then
+        echo "Addition of $a and $b : $(($a+$b))"
+elif [ "$op" = MUL ]; then
+        echo " Multiplication of $a and $b : $(($a*$b))"
+elif [ "$op" = SUB ]; then
+        echo " SUbtraction of $a and $b : $(($a-$b))"
+elif [ "$op" = DIV ]; then
+        echo " Division of $a and $b : $(($a/$b))"
+else
+        USAGE
+fi
+
+Output: if user not entered the input, it will ask the input at the runtime.
 
 
 
+Note: to know about some examples.
+
+vim /etc/init.d/network
+```
+[!File_exp.PNG](File_exp.PNG)
+```
+Expression:
+	1) String Comparsions
+		= , != , -z , -n
+	[ -z "$a" ] --> True if user has not given any value with read
+	[ -n "$a" ] --> True if user gives any value with read command
+	
+	2) Numberical Comparisions:
+		-eq , -ne , -gt , -lt, -le, -ge 
+
+		-eq --> equal to
+		-ne --> not equal to 
+		-gt --> greater than
+		-lt --> less than
+		-ge --> greater than equal to
+	Note : it cannot handle floting values Ex: 0.01 -gt 0.02 will fail.
+	       it can handle possitive + and negative - values.
+	3) File Types:
+	      File Types:
+		Regular file   -f
+		Link 	       -h | -L
+		Charac	       -c
+		Directory      -d
+		Block	       -b
+		Socket	       -s
+		Name Pipe      -p
+
+	      File Permissions
+		Read 		-r
+		Write		-w
+		execute		-s	
+		SUID		-s
+		SGID		-g
+		SBIT		-k
+	    
+	      File Ownerships
+		User		-U
+		Group		-G
+
+  
 
 ```
 ssh-pass
