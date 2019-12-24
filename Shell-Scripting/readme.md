@@ -2202,7 +2202,72 @@ Expression:
 	      File Ownerships
 		User		-U
 		Group		-G
+----------
+# ./script34.sh
+ enter value 1 20
+ enter value 2 30
+ enter Operator {ADD|MUL|SUB|DIV} Add
+./script34.sh: line 5: N: command not found
+./script34.sh: line 6: R: command not found
+ Invalid Operator
+ Select any of one {ADD|MUL|DIV|SU}
+ ADDITION OF TWO NUMBERS 50
+[root@desktop Desktop]# cat script34.sh
+#!/bin/bash
+USAGE()
+        {
 
+        N = '\e[0m'
+        R = '\e[31m]'
+         echo " Invalid Operator "
+         echo " Select any of one {ADD|MUL|DIV|SU}"
+        }
+read -p " enter value 1 " a
+read -p " enter value 2 " b
+if [ -z "$a" -o -z "$b" ]; then
+        echo -e " Invalid Input \n  Please try again  "
+        exit 1
+fi
+#read -p " enter value 2 " b
+#       if [ -z "$b" ]; then
+#       echo -e " Invalid Input \n please ty again "
+#       exit 1
+#       fi
+read -p " enter Operator {ADD|MUL|SUB|DIV} " op
+if [ -z "$c" ];then
+        USAGE
+fi
+
+op=$(echo $op|tr [a-z] [A-Z])
+if [ "$op" = ADD ]; then
+        echo " ADDITION OF TWO NUMBERS $(($a+$b))"
+elif [ "$op" = MUL ]; then
+        echo " Multiplication of two numbers $(($a*$b))"
+elif [ "$op" = SUB ]; then
+        echo " Subtraction of two numbers $(($a-$b))"
+elif [ "$op" = DIV ]; then
+        echo " Division  of two numbers $(($a/$b)) "
+else
+        USAGE
+fi
+
+Output:
+# ./script34.sh
+ enter value 1
+ enter value 2 20
+ Invalid Input
+  Please try again
+[root@desktop Desktop]# ./script34.sh
+ enter value 1 20
+ enter value 2 30
+ enter Operator {ADD|MUL|SUB|DIV} Add
+./script34.sh: line 5: N: command not found
+./script34.sh: line 6: R: command not found
+ Invalid Operator
+ Select any of one {ADD|MUL|DIV|SU}
+ ADDITION OF TWO NUMBERS 50
+ -----
+ 
   
 
 ```
