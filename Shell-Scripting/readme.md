@@ -2268,6 +2268,8 @@ Output:
  ADDITION OF TWO NUMBERS 50
  -----
  ```
+ # && --> logical AND 
+ # || --> logical OR
  ![Logical_And_Or.PNG](Logical_And_Or.PNG)
  
 ```
