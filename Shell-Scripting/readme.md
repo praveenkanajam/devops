@@ -2267,8 +2267,11 @@ Output:
  Select any of one {ADD|MUL|DIV|SU}
  ADDITION OF TWO NUMBERS 50
  -----
+ ```
  ![Logical_And_Or.PNG](Logical_And_Or.PNG)
-  
+ 
+```
+```
 
 ```
 ssh-pass
