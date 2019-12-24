@@ -2181,7 +2181,7 @@ Expression:
 		-ge --> greater than equal to
 	Note : it cannot handle floting values Ex: 0.01 -gt 0.02 will fail.
 	       it can handle possitive + and negative - values.
-	3) File Types:
+	3) File Tests:
 	      File Types:
 		Regular file   -f
 		Link 	       -h | -L
