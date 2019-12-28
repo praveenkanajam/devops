@@ -2273,7 +2273,105 @@ Output:
  ![Logical_And_Or.PNG](Logical_And_Or.PNG)
  
 ```
+[root@desktop Desktop]# [ 1 -eq 1 ]
+[root@desktop Desktop]# echo $?
+0
+[root@desktop Desktop]# [ 1 -eq 2 ]
+[root@desktop Desktop]# echo $?
+1
+
+---
+[root@desktop test]# ls
+file1.txt
+[root@desktop test]# [ -f file1.txt ] && rm -f file1.txt
+# ls -ltr
+total 0
+
+Note: hear if file exists, delete it.
+--
+In the below , if the first command fails , it will execute the second command.
+# [ -d dir1 ] ||  mkdir dir2
+[root@desktop test]# ls -lt
+total 0
+drwxr-xr-x 2 root root 6 Dec 24 07:13 dir1
+[root@desktop test]# [ -d dir2 ] ||  mkdir dir2
+[root@desktop test]# ls -lt
+total 0
+drwxr-xr-x 2 root root 6 Dec 24 07:18 dir2
+drwxr-xr-x 2 root root 6 Dec 24 07:13 dir1
+---
+
+Copy script:
+
+# cat copy.sh
+#!/bin/bash
+SOURCE=/tmp/source
+DEST=/tmp/dest
+N='\e[0m'
+R='\e[31m'
+G='\e[32m'
+echo "::::::::  copying files ::::::::::::"
+cp -rv $SOURCE/* $DEST/. &>/tmp/copy.log
+if [ $? -eq 0 ];then
+    echo -e "$G files copied $N"
+else
+    echo -e "$R copy failed $N"
+fi
+
+Output:
+# ./copy.sh
+::::::::  copying files ::::::::::::
+ files copied ]
+[root@desktop tmp]# vim copy.sh
+[root@desktop tmp]# ./copy.sh
+::::::::  copying files ::::::::::::
+ files copied 
+[root@desktop tmp]# cat copy.log
+‘/tmp/source/file1.txt’ -> ‘/tmp/dest/source/file1.txt’
+‘/tmp/source/file2.txt’ -> ‘/tmp/dest/source/file2.txt’
+‘/tmp/source/file3.txt’ -> ‘/tmp/dest/source/file3.txt’
+‘/tmp/source/file4.txt’ -> ‘/tmp/dest/source/file4.txt’
+‘/tmp/source/file5.txt’ -> ‘/tmp/dest/source/file5.txt’
+‘/tmp/source/file6.txt’ -> ‘/tmp/dest/source/file6.txt’
+‘/tmp/source/file7.txt’ -> ‘/tmp/dest/source/file7.txt’
+‘/tmp/source/file8.txt’ -> ‘/tmp/dest/source/file8.txt’
+‘/tmp/source/file9.txt’ -> ‘/tmp/dest/source/file9.txt’
+‘/tmp/source/file10.txt’ -> ‘/tmp/dest/source/file10.txt’
+
+Note: by using copy command it will copy the complete file every time. 
+By using the Rsync command it will copy the new files only.
+----
+
+# cat copy1.sh
+cat: copy1.sh: No such file or directory
+[root@desktop dest]# cd ..
+[root@desktop tmp]# cat copy1.sh
+#!/bin/bash
+SOURCE=/tmp/source
+DEST=/tmp/dest
+N='\e[0m'
+R='\e[31m'
+G='\e[32m'
+echo "::::::::  copying files ::::::::::::"
+#cp -rv $SOURCEi/* $DEST/. &>/tmp/copy.log
+rsync -avz $SOURCE/* $DEST/. &>>/tmp/copy.log;echo " log timestamp `date +%F` " >>/tmp/copy.log
+if [ $? -eq 0 ];then
+    echo -e "$G files copied $N"
+else
+    echo -e "$R copy failed $N"
+fi
+
+Output:::
+
+# ./copy1.sh
+::::::::  copying files ::::::::::::
+ files copied 
+ ---
+
+
+
 ```
+
 
 ```
 ssh-pass
