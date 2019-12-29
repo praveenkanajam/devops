@@ -10,3 +10,11 @@ Ansible is simple and best.
     Task Automation.
     and also IT orchestration.
 ```
+```
+```
+#   ************ Ansible Architecture *******************
+Refer the Below image.
+![Ans](Ans_Arch.PNG)
+```
+```
+# *************  Why ansible **************************
