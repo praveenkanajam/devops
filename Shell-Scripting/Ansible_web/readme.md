@@ -73,4 +73,43 @@ ansible.noarch                          2.9.1-1.el7                    @epel
 # rpm -aq ansible
 ansible-2.9.1-1.el7.noarch
 
+# ansible --version
+ansible 2.9.1
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  executable location = /usr/bin/ansible
+  python version = 2.7.5 (default, Aug  7 2019, 00:51:29) [GCC 4.8.5 20150623 (Red Hat 4.8.5-39)]
+Note: if we install Ansible with PIP by default we will not able to see the Config file.
+
+Below are the 3 impotant files for Ansible:
+# cd /etc/ansible/
+[root@server1 ansible]# ls -ltr
+total 24
+drwxr-xr-x 2 root root     6 Nov 14 09:55 roles
+-rw-r--r-- 1 root root  1016 Nov 14 09:55 hosts
+-rw-r--r-- 1 root root 19985 Nov 14 09:55 ansible.cfg
+
+Steps to configure Ansible:
+1. launch / select required no of servers. Which are called Managed Nodes / Clients.
+2. Requirements for managed Nodes / Clients:
+        Phthon 2 (version 2.6 or later) or Python 3 (version 3.5 or later)
+    Note: We can also work without python on Managed Nodes that is using Raw Modules.
+if we have phyton on remote node we can easly run the play books.
+if not we can use raw modules with complex.
+3. Ansible Engine used SSH Connection to connect and work with managed Nodes.
+4. We can Create SSH Connection in two ways:
+    1. Password Auth
+    2. Password-Less Auth  ( This is with SSH-Keys)
+5. Provide the Manage Nodes IP/ FQDN in inventory file on Ansible Engine.
+6. Simple test the Configuration by Running : ansible all -m ping
+
+```
+# ********** Steps: Password less Authentication ***************
+```
+Hear i am not using Root to run the play books.
+Created ansadmin user.
+# useradd ansadmin
+# passwd ansadmin
+
 ```
