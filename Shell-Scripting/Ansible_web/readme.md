@@ -108,8 +108,10 @@ if not we can use raw modules with complex.
 # ********** Steps: Password less Authentication ***************
 ```
 Hear i am not using Root to run the play books.
-Created ansadmin user.
+Created ansadmin user in master and nodes.
 # useradd ansadmin
 # passwd ansadmin
+
+
 
 ```
