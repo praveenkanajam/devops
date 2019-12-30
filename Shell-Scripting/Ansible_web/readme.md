@@ -108,9 +108,64 @@ if not we can use raw modules with complex.
 # ********** Steps: Password less Authentication ***************
 ```
 Hear i am not using Root to run the play books.
-Created ansadmin user in master and nodes.
+1. Created ansadmin user in master and nodes.
 # useradd ansadmin
 # passwd ansadmin
+
+2. Provide root privileges to all ansadmin users on all servers.
+visudo
+
+## Read drop-in files from /etc/sudoers.d (the # here does not mean a comment)
+#includedir /etc/sudoers.d
+ansadmin        ALL=(ALL)       NOPASSWD: ALL
+
+3. Make sure that password Authentication yes in all servers under /etc/ssh/sshd_config file.
+
+and restart the serivice if any config changes.
+service sshd restart -- on 6
+systemctl restart sshd -- on 7
+
+4. Generate ssh-keys using ssh-keygen command from ansadmin
+
+# su - ansadmin
+[ansadmin@server1 ~]$ ls -a
+.  ..  .bash_logout  .bash_profile  .bashrc  .cache  .config  .mozilla
+[ansadmin@server1 ~]$ ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/ansadmin/.ssh/id_rsa):
+Created directory '/home/ansadmin/.ssh'.
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /home/ansadmin/.ssh/id_rsa.
+Your public key has been saved in /home/ansadmin/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:2cQOjq5pWvrKj1HbZjZy1M2x0XVdvIvPXhhncaUQiZc ansadmin@server1.example.com
+The key's randomart image is:
++---[RSA 2048]----+
+|           .o+..*|
+|         ...Eo o+|
+|        . =.. ..o|
+|       + O +   .o|
+|    . o S *   o +|
+|   . =       . * |
+|  . + O       + .|
+| . =.O .       o.|
+|  **=         .. |
++----[SHA256]-----+
+[ansadmin@server1 ~]$ ls -a
+.  ..  .bash_logout  .bash_profile  .bashrc  .cache  .config  .mozilla  .ssh
+[ansadmin@server1 ~]$ cd .ssh/
+[ansadmin@server1 .ssh]$ ls
+id_rsa  id_rsa.pub
+[ansadmin@server1 .ssh]$ ssh-copy-id server
+
+similarly copied to destop node also.
+
+
+Note: if you want to ssh key file to remote nodes, with out pwd and yes promt.
+
+sshpass -f pwd.txt ssh-copy-id -o "StrictHostKeyChecking = no"  hostname/IP
+
 
 
 
