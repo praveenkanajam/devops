@@ -271,11 +271,15 @@ desktop | SUCCESS => {
 }
 
 ---
+```
+# How to Disable the Host key checking.
 
+## If the know host not available we will get the below message.
+![ssh](ssh_KnowHost.PNG)
 
+## while executing the ansible ping also we will get the error.
+![ans_known](Ans_Knowhost.PNG)
 
 
 ```
 
-
-```
