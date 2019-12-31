@@ -166,7 +166,116 @@ Note: if you want to ssh key file to remote nodes, with out pwd and yes promt.
 
 sshpass -f pwd.txt ssh-copy-id -o "StrictHostKeyChecking = no"  hostname/IP
 
+5. Copy ssh public key using ssh-copy-id <hostname> from /home/ansadmin/.ssh location.
+6. update inventory file with ip's
+    # vim /etc/ansible/hosts
+    # tail -2 /etc/ansible/hosts
+        192.168.1.29
+        192.168.1.30
+7. now login to remote server without providing password with the following command.
+        ssh user_name@hostname
 
+8. To ping the all the hosts in the inventory.
+
+# ansible all -m ping
+192.168.1.30 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false, 
+    "ping": "pong"
+}
+192.168.1.29 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false, 
+    "ping": "pong"
+}
+[ansadmin@server1 ~]$ ansible -m ping all
+192.168.1.30 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false, 
+    "ping": "pong"
+}
+192.168.1.29 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false, 
+    "ping": "pong"
+}
+
+---
+```
+# Ansible Directory Structure 
+```
+Default location.
+
+$ tree /etc/ansible/
+/etc/ansible/
+├── ansible.cfg
+├── hosts
+└── roles
+
+1 directory, 2 files
+
+
+$ head -20 /etc/ansible/ansible.cfg | tail
+
+# some basic default values...
+
+#inventory      = /etc/ansible/hosts
+#library        = /usr/share/my_modules/
+#module_utils   = /usr/share/my_module_utils/
+#remote_tmp     = ~/.ansible/tmp
+#local_tmp      = ~/.ansible/tmp
+#plugin_filters_cfg = /etc/ansible/plugin_filters.yml
+#forks          = 5
+
+Note: if you want to create your own hostfile. You need to change the patch in config file.
+
+inventory      = /etc/ansible/myhosts
+
+
+--
+If you want to use  the ansible  location.
+
+$ cp -rpP /etc/ansible/* .
+[ansadmin@server1 my_anisble_dir]$ ls
+ansible.cfg  hosts  myhosts  roles
+[ansadmin@server1 my_anisble_dir]$ pwd
+/home/ansadmin/my_anisble_dir
+
+If you want to use the hostfile dynamically as input.
+
+$ cat inv.txt
+server
+desktop
+[ansadmin@server1 my_anisble_dir]$ ansible all -m ping -i inv.txt
+server | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false, 
+    "ping": "pong"
+}
+desktop | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false, 
+    "ping": "pong"
+}
+
+---
+
+
+
+
+```
 
 
 ```
