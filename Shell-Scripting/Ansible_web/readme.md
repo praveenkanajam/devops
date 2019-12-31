@@ -284,6 +284,11 @@ desktop | SUCCESS => {
 
 ### export ANSIBLE_HOST_KEY_CHECKING=False
 
+## if we want to enable the host key checking false for all the machines.
+### change the config in ansible.cfg file.
+host_key_checking = False
+![hostkeyfalse](Ans_hostkeyfalse.PNG)
+
 
 ```
 
