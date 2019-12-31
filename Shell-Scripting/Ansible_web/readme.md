@@ -280,6 +280,10 @@ desktop | SUCCESS => {
 ## while executing the ansible ping also we will get the error.
 ![ans_known](Ans_Knowhost.PNG)
 
+## if we want to enable the host checking temporily(but this will work only in the existing session, once after the new session. it will ask again).
+
+### export ANSIBLE_HOST_KEY_CHECKING=False
+
 
 ```
 
