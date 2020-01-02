@@ -381,7 +381,22 @@ localhost
 group1
 group2
 ------
+```
+# Ansible    --> ansible.cfg
+##  the default location is /etc/ansible/ansible/.cfg, in which we can make various settings like.
 
+### 1. location of inventory file
+### 2. host_key_checking as False
+
+# but we can define ansible configuration file in different location and for this there is a priority for this files.
+
+# locations with priority (starting from top to bottom):
+### ANSIBLE_CONFIG environment variable
+### ./ansible.cfg from the current directory
+### ~/.ansible.cfg file present in home directory.
+### /etc/ansible/ansible.cfg default ansible.cfg file.
+
+# Note: ansible will only use the configuration settings from the file which is found in this sequence first, it will not look for the settings in the higher sequence files if the setting is not present in the file which is chosen for deployment.
 
 
 
