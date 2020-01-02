@@ -383,6 +383,7 @@ group2
 ------
 ```
 # Ansible    --> ansible.cfg
+```
 ##  the default location is /etc/ansible/ansible/.cfg, in which we can make various settings like.
 
 ### 1. location of inventory file
@@ -397,7 +398,7 @@ group2
 ### /etc/ansible/ansible.cfg default ansible.cfg file.
 
 # Note: ansible will only use the configuration settings from the file which is found in this sequence first, it will not look for the settings in the higher sequence files if the setting is not present in the file which is chosen for deployment.
-
+```
 
 
 
