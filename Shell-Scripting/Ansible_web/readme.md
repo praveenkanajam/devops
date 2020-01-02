@@ -361,6 +361,26 @@ localhost | SUCCESS => {
     "ping": "pong"
 }
 --------
+To ping multiple groups.
+Syntax: ansible group1:group2 -m ping
+
+to ping multiple group on groups.
+
+$ ansible group3 -m ping
+
+$ cat myhosts
+[group1]
+192.168.1.36
+192.168.1.30
+
+[group2]
+192.168.1.35
+localhost
+
+[group3:children]
+group1
+group2
+------
 
 
 
