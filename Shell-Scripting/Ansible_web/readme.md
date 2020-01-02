@@ -289,6 +289,84 @@ desktop | SUCCESS => {
 host_key_checking = False
 ![hostkeyfalse](Ans_hostkeyfalse.PNG)
 
-
 ```
+```
+# INVENTORY FILE WITH "GROUPS"  AND "GROUP OF GROUPS"
+
+## The Ansible Inventory file defines the list of hosts, upon which ansible works.
+```
+Note: Host has to be listed in hostfile, other wise it will not allow.
+$ cat myhosts
+192.168.1.29
+192.168.1.30
+#192.168.1.35
+[ansadmin@server1 my_ansible_prod]$ ansible 192.168.1.35 -m ping
+[WARNING]: Could not match supplied host pattern, ignoring: 192.168.1.35
+
+[WARNING]: No hosts matched, nothing to do
+
+
+$ cat myhosts
+192.168.1.29
+192.168.1.30
+192.168.1.35
+
+$ ansible 192.168.1.35 -m ping
+192.168.1.35 | SUCCESS => {
+    "ansible_facts": {:
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false, 
+    "ping": "pong"
+}
+
+NOte: we can use multihosts,using below syntax.but using this it is difficult to provide ip's for more servers. so that we can use groups.
+# ansible ip1:ip2 -m ping
+
+----
+Now exchanging the ssh keys to localhost of ansisble engine, just to get one more host.
+$ sshpass -f pwd.txt ssh-copy-id -o  "StrictHostKeyChecking = no" localhost
+now we can cosider local host alos one of the managed node.
+
+$ cat myhosts
+192.168.1.29
+192.168.1.30
+192.168.1.35
+localhost
+
+Now created groups.
+
+$ cat myhosts
+[group1]
+192.168.1.29
+192.168.1.30
+
+[group2]
+192.168.1.35
+localhost
+
+$ ansible group2 -m ping
+localhost | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false, 
+    "ping": "pong"
+}
+192.168.1.35 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false, 
+    "ping": "pong"
+}
+--------
+
+
+
+
+
+
+
+
 
