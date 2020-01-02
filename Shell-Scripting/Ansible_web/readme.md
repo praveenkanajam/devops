@@ -392,10 +392,10 @@ group2
 # but we can define ansible configuration file in different location and for this there is a priority for this files.
 
 # locations with priority (starting from top to bottom):
-### ANSIBLE_CONFIG environment variable
-### ./ansible.cfg from the current directory
-### ~/.ansible.cfg file present in home directory.
-### /etc/ansible/ansible.cfg default ansible.cfg file.
+    1. ANSIBLE_CONFIG environment variable
+    2. ./ansible.cfg from the current directory
+    3. ~/.ansible.cfg file present in home directory.
+    4. /etc/ansible/ansible.cfg default ansible.cfg file.
 
 # Note: ansible will only use the configuration settings from the 
 file which is found in this sequence first, it will not look for 
