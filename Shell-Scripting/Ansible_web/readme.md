@@ -397,7 +397,10 @@ group2
 ### ~/.ansible.cfg file present in home directory.
 ### /etc/ansible/ansible.cfg default ansible.cfg file.
 
-# Note: ansible will only use the configuration settings from the file which is found in this sequence first, it will not look for the settings in the higher sequence files if the setting is not present in the file which is chosen for deployment.
+# Note: ansible will only use the configuration settings from the 
+file which is found in this sequence first, it will not look for 
+the settings in the higher sequence files if the setting is not 
+present in the file which is chosen for deployment.
 ```
 
 
