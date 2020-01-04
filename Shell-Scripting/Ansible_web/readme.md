@@ -403,7 +403,14 @@ the settings in the higher sequence files if the setting is not
 present in the file which is chosen for deployment.
 ```
 
+# Ansible Installation:
+## 1. yum -- yum intall ansible -- Default locaion : /etc/ansible
+## 2. Pip -- pip2 install ansible --None
+## 3. make installation 
 
+```
+```
+```
 
 
 
