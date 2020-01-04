@@ -493,6 +493,8 @@ Ansible follows push machaism and agent less
 ```
 # Transfer a file using Ansible Ad-hoc command.
 ![Ansfiles_copy](Ans_file_copy.PNG)
+
+## $ ansible all -m copy -a "src=ansible_eng.txt dest=/tmp"
 ```
 
 
