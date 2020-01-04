@@ -410,9 +410,55 @@ present in the file which is chosen for deployment.
 
 ```
 ```
+# INTRODUCTION TO Ansible Ad-hoc Commands.
+```
+We can work ansible nodes, in two ways
+    1. Ad-hoc Commands
+    2. Playbooks
 ```
 
+To get the out of some shell commands in a remote node.
+syntax: ansible all -m shell -a "command"
+note: -m : module.
+      -a : arugument.
+for meminfo:
+ansible all -m shell -a "free -m"
 
+for resolve file info:
+ansible all -m shell -a "cat /etc/resolv.conf"
+
+for uptime :
+ansible all -m shell -a "uptime"
+192.168.1.35 | CHANGED | rc=0 >>
+ 07:04:21 up 25 min,  1 user,  load average: 0.00, 0.01, 0.06
+
+192.168.1.30 | CHANGED | rc=0 >>
+ 07:04:21 up 25 min,  1 user,  load average: 0.01, 0.04, 0.10
+
+192.168.1.36 | CHANGED | rc=0 >>
+ 07:04:22 up 25 min,  2 users,  load average: 0.01, 0.07, 0.24
+
+localhost | CHANGED | rc=0 >>
+ 07:04:22 up 26 min,  2 users,  load average: 0.00, 0.12, 0.82
+ 
+
+ To list all the modules.
+ $ ansible-doc -l
+
+ To list all the module with shell.
+ $ ansible-doc shell
+
+ To list the total no lines in ansible doc
+
+ $ ansible-doc -l | wc -l
+[WARNING]: win_template parsing did not produce documentation.
+[WARNING]: template parsing did not produce documentation.
+3387
+
+syntax of adhoc commands.
+
+ansible [-i prod_inv] server_name:group:group2 -m module [-a argument_value]
+ ----------
 
 
 
