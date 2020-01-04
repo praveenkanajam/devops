@@ -456,10 +456,43 @@ localhost | CHANGED | rc=0 >>
 [WARNING]: template parsing did not produce documentation.
 3387
 
-syntax of adhoc commands</span>
+syntax of adhoc commands
 
 $ ansible [-i prod_inv] server_name:group:group2 -m module [-a argument_value]
  ----------
+
+Ansible Architure:
+
+In ansisble once we had executed the it will user .ansible/tmp file and generate the output.
+
+$ tree -al .ansible/
+.ansible/
+├── cp
+└── tmp
+    ├── ansible-tmp-1578101055.19-164977329058280
+    │   └── AnsiballZ_command.py
+    └── ansible-tmp-1578104893.91-272000425290996
+        └── AnsiballZ_command.py
+it has the that python module.
+
+$ ANSIBLE_KEEP_REMOTE_FILES=1 ansible all -m shell -a "uptime'
+Note: to keep the remote files we need to prefix the above parameter.
+Ansible engine is pushing the modules to the remote node. 
+
+To know no of hosts connects at a time to execute the tasks
+$ cat ansible.cfg | grep fork
+#forks          = 5
+note: in the above forks are 5, it will execute the taks at a time 5 machnes. if you have 100 nodes, then it will take 100/5 times to complete the tasks.
+
+by default 5 nodes will , evey it is not listed also. based on our requirement, we can change it .
+
+Ansible executes task on Managed nodes paralley.
+If you want to execute the in serial then use by keeping forks =  1 in ansible.cfg
+
+Ansible follows push machaism and agent less 
+```
+# Transfer a file using Ansible Ad-hoc command.
+![Ansfiles_copy](Ans_file_copy.PNG)
 ```
 
 
