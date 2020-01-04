@@ -455,7 +455,7 @@ localhost | CHANGED | rc=0 >>
 [WARNING]: win_template parsing did not produce documentation.
 [WARNING]: template parsing did not produce documentation.
 3387
-
+```
 <span style="color: green">
 syntax of adhoc commands. </span>
 
