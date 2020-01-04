@@ -456,7 +456,8 @@ localhost | CHANGED | rc=0 >>
 [WARNING]: template parsing did not produce documentation.
 3387
 
-syntax of adhoc commands.
+<span style="color: green">
+syntax of adhoc commands. </span>
 
 ansible [-i prod_inv] server_name:group:group2 -m module [-a argument_value]
  ----------
