@@ -410,9 +410,8 @@ present in the file which is chosen for deployment.
 
 ```
 ```
-<span style="color: green">
+
 # INTRODUCTION TO Ansible Ad-hoc Commands.
-</span>
 ```
 We can work ansible nodes, in two ways
     1. Ad-hoc Commands
