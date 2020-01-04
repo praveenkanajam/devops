@@ -416,7 +416,7 @@ We can work ansible nodes, in two ways
     1. Ad-hoc Commands
     2. Playbooks
 ```
-
+```
 To get the out of some shell commands in a remote node.
 syntax: ansible all -m shell -a "command"
 note: -m : module.
@@ -459,6 +459,6 @@ syntax of adhoc commands.
 
 ansible [-i prod_inv] server_name:group:group2 -m module [-a argument_value]
  ----------
-
+```
 
 
