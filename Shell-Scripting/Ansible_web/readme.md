@@ -494,7 +494,80 @@ Ansible follows push machaism and agent less
 # Transfer a file using Ansible Ad-hoc command.
 ![Ansfiles_copy](Ans_file_copy.PNG)
 
+## ansible [-i inventory] <server1:server2:group1:group2> -m module [-a arugument]
+```
 ## $ ansible all -m copy -a "src=ansible_eng.txt dest=/tmp"
+
+# to copy file with differnent name is
+$ ansible all -m copy -a "src=ansible_eng.txt dest=/tmp/ans.txt"
+192.168.1.35 | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": true, 
+    "checksum": "b275fa8e99c7db12421d912eae743be47489aecc", 
+    "dest": "/tmp/kpk", 
+    "gid": 1001, 
+    "group": "ansadmin", 
+    "md5sum": "ebbd877d507ab9ca2e2dfcd1e0fd0bd5", 
+    "mode": "0664", 
+    "owner": "ansadmin", 
+    "size": 11, 
+    "src": "/home/ansadmin/.ansible/tmp/ansible-tmp-1578274018.51-29471310120004/source", 
+    "state": "file", 
+    "uid": 1001
+}
+NOte: changed : true, denotes that the file had been copyed and modified.
+
+In the below i am re-run the same task.now see the difference.
+$ ansible all -m copy -a "src=ansiengine.txt dest=/tmp/kpk"
+192.168.1.35 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false, 
+    "checksum": "b275fa8e99c7db12421d912eae743be47489aecc", 
+    "dest": "/tmp/kpk", 
+    "gid": 1001, 
+    "group": "ansadmin", 
+    "mode": "0664", 
+    "owner": "ansadmin", 
+    "path": "/tmp/kpk", 
+    "size": 11, 
+    "state": "file", 
+    "uid": 1001
+}
+
+Note: Hear changed state is false. hear it is already having the same file in destination location.
+This is the one of the property of Ansible called "idempotent".
+
+To copy the content with out file name:
+$ ansible all -m copy -a "content='ansi eng content' dest=/tmp"
+192.168.1.35 | FAILED! => {
+    "changed": false, 
+    "msg": "can not use content with a dir as dest"
+}
+Note: It got an error that for content we need to provide the destination file. In the below i am providing the 
+destination file.
+$ ansible all -m copy -a "content='ansiengine' dest=/tmp/ans.txt"
+localhost | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": true, 
+    "checksum": "80faa78d1300e71ec8c748e9133925167303e382", 
+    "dest": "/tmp/ans.txt", 
+    "gid": 1002, 
+    "group": "ansadmin", 
+    "md5sum": "fa73c02bad8fcf88a97aefcbd701719a", 
+    "mode": "0664", 
+    "owner": "ansadmin", 
+    "size": 10, 
+    "src": "/home/ansadmin/.ansible/tmp/ansible-tmp-1578275519.06-237937606998324/source", 
+    "state": "file", 
+    "uid": 1002
+
+
 ```
 
 
