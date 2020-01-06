@@ -567,6 +567,53 @@ localhost | CHANGED => {
     "state": "file", 
     "uid": 1002
 
+To backup a file, if you alredy having the same file.
+$ ansible all -m copy -a "content='ansiengine new' dest=/tmp/ans.txt backup=yes"
+localhost | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "backup_file": "/tmp/ans.txt.6816.2020-01-06@07:27:58~", 
+    "changed": true, 
+    "checksum": "d70b10ca4bc99ba13b07cb9757262a2a07a00ae6", 
+    "dest": "/tmp/ans.txt", 
+    "gid": 1002, 
+    "group": "ansadmin", 
+    "md5sum": "e4fc4f0a9679bbb39f25aa62fe590b7f", 
+    "mode": "0664", 
+    "owner": "ansadmin", 
+    "size": 14, 
+    "src": "/home/ansadmin/.ansible/tmp/ansible-tmp-1578275869.83-238565252288676/source", 
+    "state": "file", 
+    "uid": 1002
+}
+
+--> similarly for the file:
+$ ansible all -m copy -a "src=ansiengine.txt dest=/tmp/ans.txt backup=yes"
+localhost | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "backup_file": "/tmp/ans.txt.7592.2020-01-06@07:37:56~", 
+    "changed": true, 
+    "checksum": "a45d8786abf03b7dbcdfcdcfac84e55bac49fd01", 
+    "dest": "/tmp/ans.txt", 
+    "gid": 1002, 
+    "group": "ansadmin", 
+    "md5sum": "5eedb02d1c8e4bff6dffa40632a2fb54", 
+    "mode": "0664", 
+    "owner": "ansadmin", 
+    "size": 12, 
+    "src": "/home/ansadmin/.ansible/tmp/ansible-tmp-1578276470.3-259290646804297/source", 
+    "state": "file", 
+    "uid": 1002
+}
+
+$ ls -ltr /tmp | grep ans.txt
+-rw-rw-r-- 1 ansadmin ansadmin 10 Jan  6 07:22 ans.txt.6816.2020-01-06@07:27:58~
+-rw-rw-r-- 1 ansadmin ansadmin 14 Jan  6 07:27 ans.txt.7592.2020-01-06@07:37:56~
+-rw-rw-r-- 1 ansadmin ansadmin 12 Jan  6 07:37 ans.txt
+
 
 ```
 
