@@ -589,6 +589,7 @@ localhost | CHANGED => {
 }
 
 --> similarly for the file:
+
 $ ansible all -m copy -a "src=ansiengine.txt dest=/tmp/ans.txt backup=yes"
 localhost | CHANGED => {
     "ansible_facts": {
@@ -617,4 +618,63 @@ $ ls -ltr /tmp | grep ans.txt
 
 ```
 
+
+# Download a file from Nodes using Ansible Ad-hoc command.
+## Download a file using fetch module
+## syntax: 
+ ## ansible [-i inventory_file] <server1:server2:Group1:group2> -m <module> [-a arguments]
+ ## ansible db_servers -m fetch -a "src=/scource/file/path dest=/dest/location"
+```
+examples: copy files from remote node to ansible engine
+
+$ ansible all -m fetch -a "src=/tmp/myhosts dest=./demo2/"
+
+$ ansible all -m fetch -a "src=/tmp/myhosts dest=./demo2/"
+192.168.1.35 | CHANGED => {
+    "changed": true, 
+    "checksum": "e0b7f6f1f3e929727e606037c9c32d44419f9228", 
+    "dest": "/home/ansadmin/my_ansible_Nprod/demo2/192.168.1.35/tmp/myhosts", 
+    "md5sum": "42cdc97c8ed2b70c00eab2c6a3c023ea", 
+    "remote_checksum": "e0b7f6f1f3e929727e606037c9c32d44419f9228", 
+    "remote_md5sum": null
+}
+
+$ tree demo2/
+demo2/
+├── 192.168.1.30
+│   └── tmp
+│       └── myhosts
+├── 192.168.1.35
+│   └── tmp
+│       └── myhosts
+└── localhost
+    └── tmp
+        └── myhosts
+
+6 directories, 3 files
+Note: IN the above file copied from remote node, but it creating the directory structure also.
+      To over come this, we need to use the flat. if the content is different we need to use the addition inventory alos.
+-------------
+Example 2: Now using flat and inventory 
+
+$ ansible all -m fetch -a "src=/tmp/myhosts dest=./newdemo/{{inventory_hostname}}_demo.txt
+flat=yes"
+192.168.1.35 | CHANGED => {
+    "changed": true, 
+    "checksum": "e0b7f6f1f3e929727e606037c9c32d44419f9228", 
+    "dest": "/home/ansadmin/my_ansible_Nprod/newdemo/192.168.1.35_demo.txt", 
+    "md5sum": "42cdc97c8ed2b70c00eab2c6a3c023ea", 
+    "remote_checksum": "e0b7f6f1f3e929727e606037c9c32d44419f9228", 
+    "remote_md5sum": null
+}
+
+$ tree newdemo/
+newdemo/
+├── 192.168.1.30_demo.txt
+├── 192.168.1.35_demo.txt
+└── localhost_demo.txt
+
+0 directories, 3 files
+
+```
 
