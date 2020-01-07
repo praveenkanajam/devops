@@ -677,4 +677,6 @@ newdemo/
 0 directories, 3 files
 
 ```
-
+# Create / Delete a file or Directory using Ansible Ad-hoc command
+## using the file module: create and delete file / directory
+```
