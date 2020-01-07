@@ -680,3 +680,46 @@ newdemo/
 # Create / Delete a file or Directory using Ansible Ad-hoc command
 ## using the file module: create and delete file / directory
 ```
+Example: to create a file with name: test.txt in remote nodes.
+$ ansible all -m file -a "path=/tmp/test.txt state=touch"
+
+$ ls -ltr /tmp/ | grep test
+-rw-rw-r-- 1 ansadmin ansadmin    0 Jan  6 08:57 test.txt
+
+Example: To create a directory in /tmp/newdir in remote nodes.
+$ ansible all -m file -a "path=/tmp/newdir state=directory"
+
+$ ls -ltr /tmp/ | grep test
+-rw-rw-r-- 1 ansadmin ansadmin    0 Jan  6 08:57 test.txt
+
+Example: To know the othe state values, 
+$ ansible all -m file -a "path=/tmp/ll.txt state=dd"
+
+"changed": false, 
+    "msg": "value of state must be one of: absent, directory, file, hard, link, touch, got: dd"
+---
+Example: To delete a file in the remote machine.
+$ ansible all -m file -a "path=/tmp/test.txt state=absent"
+192.168.1.35 | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": true, 
+    "path": "/tmp/test.txt", 
+    "state": "absent"
+------------
+Example : to create a file in root directory. by default it will no allowed.
+192.168.1.35 | FAILED! => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false, 
+    "msg": "Error, could not touch target: [Errno 13] Permission denied: '/etc/new.txt'", 
+    "path": "/etc/new.txt"
+}
+
+Note: to over come this we need to become sudo. we can use -b or --become
+$ ansible all -m file -a "path=/etc/new.txt state=touch" -b
+--
+
+
