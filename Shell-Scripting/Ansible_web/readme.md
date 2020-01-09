@@ -708,7 +708,7 @@ $ ansible all -m file -a "path=/tmp/test.txt state=absent"
     "path": "/tmp/test.txt", 
     "state": "absent"
 ------------
-Example : to create a file in root directory. by default it will no allowed.
+Example : to create a file in root directory. by default it will not allowed.
 192.168.1.35 | FAILED! => {
     "ansible_facts": {
         "discovered_interpreter_python": "/usr/bin/python"
@@ -720,6 +720,18 @@ Example : to create a file in root directory. by default it will no allowed.
 
 Note: to over come this we need to become sudo. we can use -b or --become
 $ ansible all -m file -a "path=/etc/new.txt state=touch" -b
+
+To run the command with password
+$ ansible all -m file -a "path=/etc/new.txt state=touch" -k
+
+Note: in visudo if you provide the below entry. it will not ask any password while executing the ansible playbook / ad-hoc command -b. if not -k with password 
+ansadmin        ALL=(ALL)       NOPASSWD: ALL
+*********** if not will get below error.
+$ ansible 192.168.1.35 -m file -a "path=/tmp/ans.txt state=touch" -b
+192.168.1.35 | FAILED! => {
+    "msg": "Missing sudo password"
+}
+
 --
 
 
