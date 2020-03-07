@@ -732,6 +732,23 @@ $ ansible 192.168.1.35 -m file -a "path=/tmp/ans.txt state=touch" -b
     "msg": "Missing sudo password"
 }
 
+### to list the servers without opening the inventory file.
+$ ansible all -m ping --list-hosts
+  hosts (4):
+    192.168.1.36
+    192.168.1.30
+    192.168.1.35
+    localhost
+
+$ ansible groupa -m ping --list-host
+  hosts (2):
+    172.31.25.157
+    172.31.29.41
+    
+----
+
 --
+```
+# install a package (git,httpd,mysql,nginx) using ansible ad-hoc commands.
 
 
