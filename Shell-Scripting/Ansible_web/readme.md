@@ -744,11 +744,23 @@ $ ansible groupa -m ping --list-host
   hosts (2):
     172.31.25.157
     172.31.29.41
-    
+
 ----
 
 --
 ```
-# install a package (git,httpd,mysql,nginx) using ansible ad-hoc commands.
+# Different Modules to work with files ansible AD-hoc command.
+
+refer files module.
+
+```
+
+```
+# install a package ( git ,httpd,mysql,nginx) using Ansible
+
+---
+ddddd\d
+```
+
 
 
