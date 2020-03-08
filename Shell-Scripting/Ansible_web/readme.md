@@ -759,7 +759,57 @@ refer files module.
 # install a package ( git ,httpd,mysql,nginx) using Ansible
 
 ---
-ddddd\d
+
+systems: unix--> module as yum
+         ubuntu /debian -->module as apt
+
+to install the package in all the remote nodes:
+ansible all -m yum -a "name=nginx state=present" -b
+
+To uninstall the package in all the remote nodes:
+ansible all -m yum -a "name=nginx state=absent" -b
+
+To update the latest packete in all the remote nodes:
+ansible all -m yum -a "name=nginx state=latest" -b
+
+```
+```
+# command module
+---
+1.used to execute binary commands
+2.it is the default module
+3.with the command module the command will be executed with out being proceeded through a shell. As a consequence some variables like $HOME are not available. And also stream operations like <,>,| and & will not work. where as in shell module it will work.
+
+IN the below, it is not mandatory to provide the module name command. default modules is command.
+$ ansible groupb -m command -a "date" or ansible groupb -a "date"
+localhost | CHANGED | rc=0 >>
+Sun Mar  8 06:42:39 UTC 2020
+
+172.31.27.130 | CHANGED | rc=0 >>
+Sun Mar  8 06:42:39 UTC 2020
+
+IN the below it will not redirect the output in the command module.
+$ ansible groupb -m command -a "date > date.txt"
+localhost | FAILED | rc=1 >>
+date: extra operand ‘date.txt’
+Try 'date --help' for more information.non-zero return code
+
+172.31.27.130 | FAILED | rc=1 >>
+date: extra operand ‘date.txt’
+Try 'date --help' for more information.non-zero return code
+
+IN the below it will redirect the output using the shell module.
+$ ansible groupb -m shell -a "date > date.txt"
+localhost | CHANGED | rc=0 >>
+
+
+172.31.27.130 | CHANGED | rc=0 >>
+
+$ cat date.txt
+Sun Mar  8 06:44:46 UTC 2020
+
+
+---
 ```
 
 
