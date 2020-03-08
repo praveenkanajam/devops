@@ -779,6 +779,7 @@ ansible all -m yum -a "name=nginx state=latest" -b
 1.used to execute binary commands
 2.it is the default module
 3.with the command module the command will be executed with out being proceeded through a shell. As a consequence some variables like $HOME are not available. And also stream operations like <,>,| and & will not work. where as in shell module it will work.
+4.The command module is more secure, because it will not be affected by the user's environment.
 
 IN the below, it is not mandatory to provide the module name command. default modules is command.
 $ ansible groupb -m command -a "date" or ansible groupb -a "date"
