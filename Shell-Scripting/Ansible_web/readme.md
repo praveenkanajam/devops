@@ -775,6 +775,7 @@ ansible all -m yum -a "name=nginx state=latest" -b
 ```
 ```
 # command module
+```
 ---
 1.used to execute binary commands
 2.it is the default module
@@ -811,7 +812,180 @@ Sun Mar  8 06:44:46 UTC 2020
 
 
 ---
-```
 
+```
+# Ansible Facts
+``` 
+ ---
+ 1.ANSIBLE FACTS are nothing but information about Managed Nodes like: OS Distribution, Release,
+ processor,Python etc ...
+ 2.The task of collecting this remote system information is called as Gathering Facts, and collected / Gathered 
+ information is called facts or variable.
+ 3.You can Gather / Collect Facts using setup Module in Ad-hoc commands.
+ Note: Ansible playbooks call this setup module by default to perfrom Gathering Facts task.
+
+ Syntax: ansible group_name -m setup
+
+it will display all the facts.
+
+to filter the the setup.
+
+$ ansible groupb -m setup -a "filter=ansible_mounts"
+localhost | SUCCESS => {
+    "ansible_facts": {
+        "ansible_mounts": [
+            {
+                "block_available": 2055894, 
+                "block_size": 4096, 
+                "block_total": 2618619, 
+                "block_used": 562725, 
+                "device": "/dev/xvda1", 
+                "fstype": "xfs", 
+                "inode_available": 5179035, 
+                "inode_total": 5242304, 
+                "inode_used": 63269, 
+                "mount": "/", 
+                "options": "rw,relatime,attr2,inode64,noquota", 
+                "size_available": 8420941824, 
+                "size_total": 10725863424, 
+                "uuid": "2f20ff4a-d23f-42be-a143-e105177b21ce"
+            }
+        ], 
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false
+}
+172.31.27.130 | SUCCESS => {
+    "ansible_facts": {
+        "ansible_mounts": [
+            {
+                "block_available": 2055894, 
+                "block_size": 4096, 
+                "block_total": 2618619, 
+                "block_used": 562725, 
+                "device": "/dev/xvda1", 
+                "fstype": "xfs", 
+                "inode_available": 5179035, 
+                "inode_total": 5242304, 
+                "inode_used": 63269, 
+                "mount": "/", 
+                "options": "rw,relatime,attr2,inode64,noquota", 
+                "size_available": 8420941824, 
+                "size_total": 10725863424, 
+                "uuid": "2f20ff4a-d23f-42be-a143-e105177b21ce"
+            }
+        ], 
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false
+}
+```
+# Types of Ansible Facts
+```
+There are two types of ansible facts or varible for managed Nodes.
+They are:
+    1. Default Facts
+    2. Custom Facts
+
+Why we need Custom FACTS?
+1.To get user defined required facts.
+Ex: I need to find the git version, httd version, weblogic version, db version etc..
+for all my managed nodes.
+3. To identify prod / non prod /dev/qa servers.
+
+Ex: To get the git version and httpd version.
+ansible all -m shell -a "git --version;/usr/sbin/httpd -version"
+
+172.31.29.41 | CHANGED | rc=0 >>
+git version 1.8.3.1
+Server version: Apache/2.4.6 (CentOS)
+Server built:   Aug  8 2019 11:41:18
+
+localhost | CHANGED | rc=0 >>
+git version 1.8.3.1
+Server version: Apache/2.4.6 (CentOS)
+Server built:   Aug  8 2019 11:41:18
+
+172.31.27.130 | CHANGED | rc=0 >>
+git version 1.8.3.1
+Server version: Apache/2.4.6 (CentOS)
+Server built:   Aug  8 2019 11:41:18
+
+
+Steps to create custom facts:
+1. create a folder /etc/ansible/facts.d on Managed Nodes or custom ansible home
+2. Inside of facts.d place one more custom facts file with extension as .fact
+3. The output of file should be a json format.
+4. The fact file should have exectuion permission.
+
+cat facts.d/git_httpd_v.fact
+#!/bin/bash
+git_ver=$(git --version | awk '{print $3}')
+httpd_ver=$(/usr/sbin/httpd -version | awk 'NR==1 {print $3}')
+
+cat << EOF
+{
+        "Git_Version"   : "$git_ver",
+        "Httpd_Version" : "$httpd_ver"
+}
+EOF
+
+To get the all the facts:
+ansible all -m setup
+
+To get the facts to custom host:
+ansible local -m setup
+
+To get the custom facts using grep or egrep
+
+$ ansible localhost -m setup | grep -i git
+            "git_httpd_v": {
+                "Git_Version": "1.8.3.1",
+$ ansible localhost -m setup | grep -i git
+            "git_httpd_v": {
+                "Git_Version": "1.8.3.1",
+$ ansible localhost -m setup | egrep -i "git|httpd"
+            "git_httpd_v": {
+                "Git_Version": "1.8.3.1",
+                "Httpd_Version": "Apache/2.4.6"
+
+
+]$ ansible all -m setup -a "filter=ansible_local"
+172.31.29.41 | SUCCESS => {
+    "ansible_facts": {
+        "ansible_local": {}, 
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false
+}
+localhost | SUCCESS => {
+    "ansible_facts": {
+        "ansible_local": {
+            "git_httpd_v": {
+                "Git_Version": "1.8.3.1", 
+                "Httpd_Version": "Apache/2.4.6"
+            }
+        }, 
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false
+}
+172.31.27.130 | SUCCESS => {
+    "ansible_facts": {
+        "ansible_local": {
+            "git_httpd_v": {
+                "Git_Version": "1.8.3.1", 
+                "Httpd_Version": "Apache/2.4.6"
+            }
+        }, 
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false
+}
+
+Note: if you use filter with the local fact name it will not work , we need to use the filter as "ansible_local"
+ ---
+ 
+```
 
 
