@@ -984,8 +984,59 @@ localhost | SUCCESS => {
 }
 
 Note: if you use filter with the local fact name it will not work , we need to use the filter as "ansible_local"
+this will work only with the local host , all hosts not collected the data. so that we need to copy the facts files in all the remote nodes.
+
+
+To create a facts.d diretory in all the remote nodes.
+$ansible all -m file -a "path=/etc/ansible/facts.d state=directory" -b
+
+To copy the file with the exec permission in all the remote nodes.
+$ansible all -m copy -a "src=./facts.d/git_httpd_v.fact dest=/etc/ansible/facts.d
+/git_httpd_v.fact mode='0755'" -b
+
+To get the facts info from the setup in all the remote hosts.
+$ansible all -m setup -a "filter=ansible_local"
+
+172.31.29.41 | SUCCESS => {
+    "ansible_facts": {
+        "ansible_local": {
+            "git_httpd_v": {
+                "Git_Version": "1.8.3.1", 
+                "Httpd_Version": "Apache/2.4.6"
+            }
+        }, 
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false
+}
+localhost | SUCCESS => {
+    "ansible_facts": {
+        "ansible_local": {
+            "git_httpd_v": {
+                "Git_Version": "1.8.3.1", 
+                "Httpd_Version": "Apache/2.4.6"
+            }
+        }, 
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false
+}
+172.31.27.130 | SUCCESS => {
+    "ansible_facts": {
+        "ansible_local": {
+            "git_httpd_v": {
+                "Git_Version": "1.8.3.1", 
+                "Httpd_Version": "Apache/2.4.6"
+            }
+        }, 
+        "discovered_interpreter_python": "/usr/bin/python"
+    }, 
+    "changed": false
+}
+
  ---
  
+
 ```
 
 
